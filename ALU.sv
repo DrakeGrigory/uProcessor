@@ -43,6 +43,11 @@ always @(*) begin
             out = R;
             Co = 0;
         end
+        default:
+        begin //LD
+            out = 0;
+            Co = 0;
+        end
     endcase
 end
 endmodule

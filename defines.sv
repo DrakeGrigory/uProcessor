@@ -6,3 +6,4 @@
 `define XOR 3'd4
 `define NOT 3'd5
 `define LD  3'd6
+`define ST  3'd7

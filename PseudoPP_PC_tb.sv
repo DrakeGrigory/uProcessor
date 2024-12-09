@@ -53,7 +53,7 @@ PP PP1(
 RegfisterFile RF(
 .RegCE(PP_RegCE),  //inputs
 .RegNum(PP_RegAddr),
-.A(A_out_tb),
+.A(A_out),
 .nReset(nReset_tb),
 .clk(clk_tb),
 .out(RF_2_ALU) //output
@@ -92,12 +92,12 @@ end
 end
 
 initial begin //start values
-A_out_tb = 8'h82;
+A_out_tb = 8'h00;
 clk_tb = 0;
 nReset_tb = 0;
 #6 nReset_tb = 1;
 
-#70 $finish;
+#200 $finish;
 end
 
 initial begin
