@@ -85,14 +85,14 @@ initial begin // ALU Codes
     #10 ALUCode_tb = `ALU_ADD;
     #10 ALUCode_tb = `ALU_XOR;
     #10 ALUCode_tb = `ALU_NOT;
-    #10 ALUCode_tb = `ALU_LDR;
+    #10 ALUCode_tb = `ALU_LD;
     #10 ALUCode_tb = `ALU_SUB;
     #10 ALUCode_tb = `ALU_ADD;
     #10 ALUCode_tb = `ALU_ADD;
     #10 ALUCode_tb = `ALU_SUB;
     #10 ALUCode_tb = `ALU_NOT;
     #10 ALUCode_tb = `ALU_ADD;
-    #20 ALUCode_tb = `ALU_LDR;
+    #20 ALUCode_tb = `ALU_LD;
 
     //Testing CY
     //Starting A=4;

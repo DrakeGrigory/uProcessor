@@ -39,7 +39,7 @@ always @(*) begin
             out = ~A;
             Co = 0;
         end
-        `ALU_LDR: begin //LDR
+        `ALU_LD: begin //LD
             out = R;
             Co = 0;
         end

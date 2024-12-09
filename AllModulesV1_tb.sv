@@ -82,7 +82,7 @@ clk_tb = 0;
 nReset_tb = 0;
 #6 nReset_tb = 1;
 
-#100 $finish;
+#180 $finish;
 end
 
 initial begin // file save
