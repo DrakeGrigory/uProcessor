@@ -21,7 +21,7 @@ fi
 
 gtkwave ALU_tb.gtkw
 
-if [$? -ne 1]; then
-    echo gtkw failure
-    exit -1
-fi
+# if [$? -ne 1]; then
+#     echo gtkw failure
+#     exit -1
+# fi

@@ -1,34 +1,32 @@
 [*]
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Mon Oct 28 13:01:40 2024
+[*] Mon Oct 28 13:58:50 2024
 [*]
 [dumpfile] "/home/student/KG_LAB/Sem2/WDWF/KG_uP/ALU_tb.vcd"
-[dumpfile_mtime] "Mon Oct 28 13:01:33 2024"
-[dumpfile_size] 1211
+[dumpfile_mtime] "Mon Oct 28 13:54:47 2024"
+[dumpfile_size] 1982
 [savefile] "/home/student/KG_LAB/Sem2/WDWF/KG_uP/ALU_tb.gtkw"
 [timestart] 0
 [size] 2488 1376
 [pos] -1 -1
-*-14.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-13.000000 32680 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] ALU_tb.
 [sst_width] 233
-[signals_width] 150
+[signals_width] 279
 [sst_expanded] 1
 [sst_vpaned_height] 414
 @28
 ALU_tb.ALUCode_tb[2:0]
-ALU_tb.ALU_2_RegCY
 ALU_tb.A_CE_tb
 @22
-ALU_tb.A_tb[7:0]
+ALU_tb.R_tb[7:0]
+@23
+ALU_tb.RegAku_2_ALU[7:0]
 @28
+ALU_tb.clk_tb
+ALU_tb.ALU_2_RegCY
 ALU_tb.CY_CE_tb
 ALU_tb.Ci_tb
 ALU_tb.Co_tb
-@22
-ALU_tb.R_tb[7:0]
-@28
-ALU_tb.clk_tb
-@22
-ALU_tb.out_tb[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

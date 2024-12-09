@@ -9,6 +9,7 @@ module ALU_tb;
 logic A_CE_tb = 0;
 logic CY_CE_tb = 0;
 logic clk_tb = 0;
+logic nReset = 1;
 
 
 //ALU
@@ -22,16 +23,17 @@ logic [7:0] out_tb;
 //WIRES
 wire ALU_2_RegCY;
 wire [7:0] ALU_2_RegAku;
+wire [7:0] RegAku_2_ALU;
 
 //=========================== MODULES ==========================
 
 ALU ALU_1(
 .ALUCode(ALUCode_tb),
-.A(A_tb),
+.A(RegAku_2_ALU),
 .R(R_tb),
 .Ci(Ci_tb), 
 .Co(ALU_2_RegCY),
-.out(out_tb)
+.out(ALU_2_RegAku)
 );
 
 Reg_CY Reg_CY_1(
@@ -40,16 +42,23 @@ Reg_CY Reg_CY_1(
 .clk(clk_tb)
 );
 
-// Aku Aku(
-// .CE(A_CE_tb),
-// .D(ALU_2_RegAku),
-// .clk(clk_tb)
-// .Q()
-// )
+Aku Aku_1(
+.CE(A_CE_tb),
+.D(ALU_2_RegAku),
+.clk(clk_tb),
+.Q(RegAku_2_ALU),
+.nReset(nReset)
+);
 
 
 initial begin
+A_CE_tb = 1;
+CY_CE_tb = 1;
 clk_tb = 0;
+
+nReset = 0;
+#6 nReset = 1;
+
 #100 $finish;
 end
 
@@ -60,7 +69,10 @@ end
 end
 
 initial begin
-    #0 ALUCode_tb = 3'd0;
+    #1 ALUCode_tb = 3'd0;
+    #10
+    #10 ALUCode_tb = 3'd1;
+    #10 ALUCode_tb = 3'd0;
 end
 
 initial begin
