@@ -1,0 +1,45 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Thu Nov  7 15:41:29 2024
+[*]
+[dumpfile] "/home/kgtest/Documents/Data/KG_uP_1630_061124/PseudoPP_PC_tb.vcd"
+[dumpfile_mtime] "Thu Nov  7 15:41:07 2024"
+[dumpfile_size] 3559
+[savefile] "/home/kgtest/Documents/Data/KG_uP_1630_061124/PseudoPP_PC_tb.gtkw"
+[timestart] 0
+[size] 1920 993
+[pos] -1 -1
+*-14.400000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] PseudoPP_PC_tb.
+[sst_width] 239
+[signals_width] 240
+[sst_expanded] 1
+[sst_vpaned_height] 296
+@28
+PseudoPP_PC_tb.clk_tb
+PseudoPP_PC_tb.nReset_tb
+@22
+PseudoPP_PC_tb.PC_Addr[4:0]
+@28
+PseudoPP_PC_tb.PP_RegCE
+PseudoPP_PC_tb.PP_RegAddr[3:0]
+@22
+PseudoPP_PC_tb.RF.R0.Q[7:0]
+PseudoPP_PC_tb.RF.R1.Q[7:0]
+PseudoPP_PC_tb.RF.R2.Q[7:0]
+PseudoPP_PC_tb.RF.R3.Q[7:0]
+@24
+PseudoPP_PC_tb.RF_2_ALU[7:0]
+@22
+PseudoPP_PC_tb.ALU_1.A[7:0]
+@24
+PseudoPP_PC_tb.ALU_1.ALUCode[2:0]
+@28
+PseudoPP_PC_tb.ALU_1.Ci
+@29
+PseudoPP_PC_tb.ALU_1.Co
+@28
+PseudoPP_PC_tb.PP_CY_CE
+PseudoPP_PC_tb.PP_A_CE
+[pattern_trace] 1
+[pattern_trace] 0

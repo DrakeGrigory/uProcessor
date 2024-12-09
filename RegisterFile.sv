@@ -4,40 +4,40 @@ module RegfisterFile(
     input [7:0] A,
     input clk,
     input nReset,
-    input [3:0] RegX, //decoder will be placed in ID
+    input [3:0] RegNum, //decoder will be placed in ID
     input RegCE,
 
     output logic [7:0] out);
 
 wire [7:0] Reg2Mult [0:3];
 
-DffPIPO_CE R0(
+DffPIPO_CE_SET R0(
 .D(A),
-.CE(RegX[0] & RegCE),
+.CE(RegNum[0] & RegCE),
 .clk(clk),
 .nReset(nReset),
 .Q(Reg2Mult[0])
 );
 
-DffPIPO_CE R1(
+DffPIPO_CE_SET #(.SET(1)) R1(
 .D(A),
-.CE(RegX[1] & RegCE),
+.CE(RegNum[1] & RegCE),
 .clk(clk),
 .nReset(nReset),
 .Q(Reg2Mult[1])
 );
 
-DffPIPO_CE R2(
+DffPIPO_CE_SET #(.SET(2)) R2(
 .D(A),
-.CE(RegX[2] & RegCE),
+.CE(RegNum[2] & RegCE),
 .clk(clk),
 .nReset(nReset),
 .Q(Reg2Mult[2])
 );
 
-DffPIPO_CE R3(
+DffPIPO_CE_SET #(.SET(4)) R3(
 .D(A),
-.CE(RegX[3] & RegCE),
+.CE(RegNum[3] & RegCE),
 .clk(clk),
 .nReset(nReset),
 .Q(Reg2Mult[3])
@@ -45,7 +45,7 @@ DffPIPO_CE R3(
 
 
 always @(*) begin
-    case (RegX)
+    case (RegNum)
         4'd1: out = Reg2Mult[0];
         4'd2: out = Reg2Mult[1];
         4'd4: out = Reg2Mult[2];
@@ -54,5 +54,8 @@ always @(*) begin
     endcase
 end
 
-
 endmodule
+
+
+
+

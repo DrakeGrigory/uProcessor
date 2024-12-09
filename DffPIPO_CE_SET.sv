@@ -1,10 +1,10 @@
-module DffPIPO_CE(
+module DffPIPO_CE_SET #(parameter SET = 0, parameter SIZE = 8)(
     input CE,
-    input [7:0] D,
+    input [SIZE-1:0] D,
     input clk,
     input nReset,
 
-    output reg [7:0] Q
+    output reg [SIZE-1:0] Q
 );
 
 always @(posedge clk ) begin
@@ -13,6 +13,6 @@ always @(posedge clk ) begin
             Q <= D;
     end
     else 
-        Q <= 8'h00;
+        Q <= SET;
 end
 endmodule

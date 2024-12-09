@@ -1,8 +1,7 @@
 `timescale  1ns/1ps
 
-`include "RegCY.sv"
 `include "ALU.sv"
-`include "DffPIPO_CE.sv" 
+`include "DffPIPO_CE_SET.sv" 
 `include "PC_PP.sv" 
 `include "RegisterFile.sv"
 
@@ -10,6 +9,7 @@ module PseudoPP_PC_tb;
 
 logic clk_tb;
 logic nReset_tb;
+logic [7:0] A_out_tb;
 
 //wires wires wires wires wires wires wires
 
@@ -22,6 +22,7 @@ wire [3:0] PP_RegAddr;
 wire [2:0] PP_ALUCode; 
 wire PP_CY_CE;
 wire PP_A_CE;
+wire PP_ResetCY;
 
 // RF outputs
 wire [7:0] RF_2_ALU;
@@ -38,12 +39,11 @@ wire [7:0] A_out;
 
 // modules modules modules modules modules modules
 
-PC PC1(.addr(PC_Addr));
+PC PC1(.clk(clk_tb), .nReset(nReset_tb), .addr(PC_Addr));
 
 PP PP1(
-.addr(PC_Addr),
-
-.RegAddr(PP_RegAddr),
+.addr(PC_Addr),        //input 
+.RegAddr(PP_RegAddr),  //outputs
 .ALUCode(PP_ALUCode), 
 .Reg_CE(PP_RegCE),
 .CY_CE(PP_CY_CE),
@@ -51,12 +51,12 @@ PP PP1(
 );
 
 RegfisterFile RF(
-.RegCE(PP_RegCE),
-.RegX(PP_RegAddr),
-.A(A_out),
+.RegCE(PP_RegCE),  //inputs
+.RegNum(PP_RegAddr),
+.A(A_out_tb),
 .nReset(nReset_tb),
 .clk(clk_tb),
-.out(RF_2_ALU)
+.out(RF_2_ALU) //output
 );
 
 ALU ALU_1(
@@ -68,15 +68,15 @@ ALU ALU_1(
 .out(ALU_2_A)
 );
 
-DffPIPO_CE RegCY(
+DffPIPO_CE_SET #(.SIZE(1)) RegCY(
 .CE(PP_CY_CE),
 .D(ALU_Co),
 .clk(clk_tb),
 .Q(RegCY_Q),
-.nReset(nReset_tb)
+.nReset(nReset_tb | PP_ResetCY)
 );
 
-DffPIPO_CE A(
+DffPIPO_CE_SET A(
 .CE(PP_A_CE),
 .D(ALU_2_A),
 .clk(clk_tb),
@@ -86,21 +86,22 @@ DffPIPO_CE A(
 
 // SIM SIM SIM SIM SIM SIM SIM SIM SIM SIM SIM SIM SIM SIM SIM SIM
 initial begin //clk
-clk_tb = 0;
 forever begin
     #5 clk_tb = ~clk_tb;
 end
 end
 
 initial begin //start values
-nReset = 0;
-#6 nReset = 1;
+A_out_tb = 8'h82;
+clk_tb = 0;
+nReset_tb = 0;
+#6 nReset_tb = 1;
 
 #70 $finish;
 end
 
 initial begin
-    $dumpfile("ALU_tb.vcd");
+    $dumpfile("PseudoPP_PC_tb.vcd");
     $dumpvars;
     $dumpon;
 end

@@ -1,11 +1,11 @@
 #! /bin/bash
 
-#filename="ALU_tb"
 #filename="RegisterFile_tb"
 filename="PseudoPP_PC_tb"
+#filename="ALU_tb"
 
-rm $filename
-rm "${filename}.vcd"   
+#rm $filename
+#rm "${filename}.vcd"   
 
 iverilog -g2012 -o "${filename}" "${filename}.sv"
 
@@ -23,7 +23,7 @@ if [$? -ne 1]; then
 fi
 
 
-gtkwave "${filename}.gtkw" --rcvar 'fontname_signals Monospace 17' --rcvar 'fontname_waves Monospace 12'
+gtkwave "${filename}.vcd" --rcvar 'fontname_signals Monospace 17' --rcvar 'fontname_waves Monospace 12'
 
 if [$? -ne 1]; then
     echo gtkw failure

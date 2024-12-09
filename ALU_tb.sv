@@ -1,8 +1,7 @@
 `timescale  1ns/1ps
 
-`include "RegCY.sv"
 `include "ALU.sv"
-`include "DffPIPO_CE.sv" 
+`include "DffPIPO_CE_SET.sv" 
 
 module ALU_tb;
 
@@ -21,6 +20,7 @@ logic [7:0] out_tb;
 
 //WIRES
 wire ALU_2_RegCY;
+wire RegCY_2_ALU;
 wire [7:0] ALU_2_RegAku;
 wire [7:0] RegAku_2_ALU;
 
@@ -30,18 +30,20 @@ ALU ALU_1(
 .ALUCode(ALUCode_tb),
 .A(RegAku_2_ALU),
 .R(R_tb),
-.Ci(Ci_tb), 
+.Ci(RegCY_2_ALU), 
 .Co(ALU_2_RegCY),
 .out(ALU_2_RegAku)
 );
 
-RegCY RegCY_1(
+DffPIPO_CE_SET  #(.SIZE(1))  RegCY_1(
 .CE(CY_CE_tb),
-.CY_in(ALU_2_RegCY),
-.clk(clk_tb)
+.D(ALU_2_RegCY),
+.clk(clk_tb),
+.Q(RegCY_2_ALU),
+.nReset(nReset)
 );
 
-DffPIPO_CE Aku(
+DffPIPO_CE_SET Aku(
 .CE(A_CE_tb),
 .D(ALU_2_RegAku),
 .clk(clk_tb),
@@ -66,7 +68,7 @@ clk_tb = 0;
 nReset = 0;
 #6 nReset = 1;
 
-#200 $finish;
+#300 $finish;
 end
 
 
@@ -88,6 +90,17 @@ initial begin // ALU Codes
     #10 ALUCode_tb = `SUB;
     #10 ALUCode_tb = `NOT;
     #10 ALUCode_tb = `ADD;
+    #20 ALUCode_tb = `LD;
+
+    //Testing CY
+    //Starting A=4;
+    #10 ALUCode_tb = `NOT; R_tb = 8'd10; //251
+    #10 ALUCode_tb = `ADD; //5 + CY
+    #10 ALUCode_tb = `ADD; //16
+    #10 ALUCode_tb = `SUB; //6
+    #10 ALUCode_tb = `SUB; //252 - CY
+    #10 ALUCode_tb = `SUB; //241
+
 end
 
 
