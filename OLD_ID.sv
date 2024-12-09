@@ -4,36 +4,33 @@
 */
 
 module InstructionDecoder(
-input [`ID_IN_MSB:0] Ins,
+input [5:0] Ins,
 
 
-output logic [7:0] ID_DM_Addr,
-output logic ID_DM_CE,
-output logic Reg_CE,   
-output logic [3:0] RegAddr,
-output logic [7:0] ImdData,
-output logic Sel,    
+
+output logic [3:0] RegAddr,    
 output logic [2:0] ALUCode, 
-output logic nResetCY
+output logic Reg_CE,          
 output logic CY_CE,        
 output logic A_CE,         
-
+output logic nResetCY
 );
 
-wire [4:0] OpCodeWire;
-wire [1:0] RNumWire;
+wire [3:0] OpCode;
+wire [1:0] RNum;
 wire [2:0] ALUCodeWire;
-wire [7:0] ImdDataWire;
 
-assign OpCodeWire      = Ins[`ID_IN_MSB   : `ID_IN_MSB-4];         //5 first MSB bits
-assign RNumWire        = Ins[`ID_IN_MSB-5 : `ID_IN_MSB-6];         //2 6-7 MSB bit
-assign ALUCodeWire = Ins[`ID_IN_MSB-1 : `ID_IN_MSB-3];         //3 2-4 MSB bits
-assign ImdDataWire     = Ins[7:0];
+assign OpCode = Ins[5:2];       //4
+assign RNum = Ins[1:0];         //2
+assign ALUCodeWire = Ins[4:2];  //3 
 
 always @(*) begin
+//predefine
+
+
 
 //RegAddr
-    case (RNumWire)
+    case (RNum)
      `R0: RegAddr = 4'b0001; 
      `R1: RegAddr = 4'b0010;
      `R2: RegAddr = 4'b0100;
@@ -42,7 +39,7 @@ always @(*) begin
     endcase 
 
 //RegCE
-    if(OpCodeWire == `OPCODE_ST_R) begin
+    if(OpCode[3:2] == 2'b11) begin
         Reg_CE=1;
     end else begin
         Reg_CE=0;
@@ -50,16 +47,15 @@ always @(*) begin
 
 
 //ALUCode
-    case(ALUCodeWire)
-    // if(OpCode[3] == 1'b0) begin
-    //     ALUCode = ALUCodeWire; 
-    // end else begin
-    //     if(OpCode[2]==1'b0) begin
-    //         ALUCode = `ALU_LD;
-    //     end else begin
-    //         ALUCode = `ALU_DEF;
-    //     end
-    // end
+    if(OpCode[3] == 1'b0) begin
+        ALUCode = ALUCodeWire; 
+    end else begin
+        if(OpCode[2]==1'b0) begin
+            ALUCode = `ALU_LD;
+        end else begin
+            ALUCode = `ALU_DEF;
+        end
+    end
 
 //CY_CE AND nResetCY
     if(OpCode[3:1] == 3'b000) begin
