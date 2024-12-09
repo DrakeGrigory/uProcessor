@@ -1,0 +1,165 @@
+$date
+	Wed Nov 13 16:38:50 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module PP_ID_tb $end
+$var wire 6 ! PP_Ins [5:0] $end
+$var wire 5 " PC_Addr [4:0] $end
+$var reg 1 # clk_tb $end
+$var reg 1 $ nReset_tb $end
+$scope module ID1 $end
+$var wire 2 % RNum [1:0] $end
+$var wire 4 & OpCode [3:0] $end
+$var wire 6 ' Ins [5:0] $end
+$var wire 3 ( ALUCodeWire [2:0] $end
+$var reg 3 ) ALUCode [2:0] $end
+$var reg 1 * A_CE $end
+$var reg 1 + CY_CE $end
+$var reg 4 , RegAddr [3:0] $end
+$var reg 1 - Reg_CE $end
+$var reg 1 . ResetCY $end
+$upscope $end
+$scope module PC1 $end
+$var wire 1 # clk $end
+$var wire 1 $ nReset $end
+$var reg 5 / addr [4:0] $end
+$upscope $end
+$scope module PP1 $end
+$var wire 6 0 InsOut [5:0] $end
+$var wire 5 1 addr [4:0] $end
+$var integer 32 2 i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b11111 2
+b0 1
+b1 0
+b0 /
+1.
+0-
+b10 ,
+0+
+1*
+b111 )
+b0 (
+b1 '
+b0 &
+b1 %
+0$
+0#
+b0 "
+b1 !
+$end
+#5000
+1#
+#6000
+1$
+#10000
+0#
+#15000
+b1 (
+b1 &
+b101 !
+b101 '
+b101 0
+b1 "
+b1 /
+b1 1
+1#
+#20000
+0#
+#25000
+b100 ,
+b0 (
+b10 %
+b0 &
+b10 !
+b10 '
+b10 0
+b10 "
+b10 /
+b10 1
+1#
+#30000
+0#
+#35000
+b1000 ,
+b10 (
+b11 %
+b10 &
+b1011 !
+b1011 '
+b1011 0
+b11 "
+b11 /
+b11 1
+1#
+#40000
+0#
+#45000
+b0 (
+b0 &
+b11 !
+b11 '
+b11 0
+b100 "
+b100 /
+b100 1
+1#
+#50000
+0#
+#55000
+0*
+b111 (
+bx %
+b111 &
+b111xx !
+b111xx '
+b111xx 0
+b101 "
+b101 /
+b101 1
+1#
+#60000
+0#
+#65000
+b110 "
+b110 /
+b110 1
+1#
+#70000
+0#
+#75000
+b111 "
+b111 /
+b111 1
+1#
+#80000
+0#
+#85000
+b1000 "
+b1000 /
+b1000 1
+1#
+#90000
+0#
+#95000
+b1001 "
+b1001 /
+b1001 1
+1#
+#100000
+0#
+#105000
+b1010 "
+b1010 /
+b1010 1
+1#
+#106000

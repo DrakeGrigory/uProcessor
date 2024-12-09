@@ -1,11 +1,12 @@
 #! /bin/bash
 
 #filename="RegisterFile_tb"
-filename="PC_PP_BFM_tb"
+#filename="PC_PP_BFM_tb"
 #filename="ALU_tb"
+filename="PP_ID_tb"
 
-#rm $filename
-#rm "${filename}.vcd"   
+# rm $filename
+# rm "${filename}.vcd"   
 
 iverilog -g2012 -o "${filename}" "${filename}.sv"
 

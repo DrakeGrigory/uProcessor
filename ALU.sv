@@ -13,38 +13,38 @@ module ALU
 
 always @(*) begin
     case (ALUCode)
-        `ADD: begin //ADD
+        `ALU_ADD: begin //ADD
             {Co,out} = A + R + Ci;
         end
 
-        `SUB: begin //SUB
+        `ALU_SUB: begin //SUB
             {Co,out} = A - R - Ci;
         end
 
-        `AND: begin //AND
+        `ALU_AND: begin //AND
             out = A & R;
             Co = 0;
         end
 
-        `OR: begin //OR
+        `ALU_OR: begin //OR
             out = A | R;
             Co = 0;                
         end
 
-        `XOR: begin //XOR
+        `ALU_XOR: begin //XOR
             out = A ^ R;
             Co = 0;   
         end
-        `NOT: begin //NOT
+        `ALU_NOT: begin //NOT
             out = ~A;
             Co = 0;
         end
-        `LD: begin //LD
+        `ALU_LDR: begin //LDR
             out = R;
             Co = 0;
         end
         default:
-        begin //LD
+        begin
             out = 0;
             Co = 0;
         end

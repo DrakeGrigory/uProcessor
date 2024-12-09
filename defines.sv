@@ -1,12 +1,11 @@
 //ALU
-`define ADD 3'd0
-`define SUB 3'd1
-`define AND 3'd2
-`define OR  3'd3
-`define XOR 3'd4
-`define NOT 3'd5
-`define LD  3'd6
-`define ST  3'd7
+`define ALU_ADD 3'd0
+`define ALU_SUB 3'd1
+`define ALU_AND 3'd2
+`define ALU_OR  3'd3
+`define ALU_XOR 3'd4
+`define ALU_NOT 3'd5
+`define ALU_LDR 3'd6
 
 
 //INSTRUCTION
@@ -16,7 +15,8 @@
 `define OPCODE_OR  4'd3
 `define OPCODE_XOR 4'd4
 `define OPCODE_NOT 4'd5
-`define OPCODE_NOP 4'd6
+`define OPCODE_LDR 4'd6
+`define OPCODE_NOP 4'd7
 `define OPCODE_LD  4'd8
 `define OPCODE_ST  4'd12
 
@@ -25,5 +25,5 @@
 `define R2 2'd2
 `define R3 2'd3
 
-//DECODER
-`define NOP 3'd6;
+//INSTRUCTION DECODER
+`define ALU_MAX_NUM 3'd7;
