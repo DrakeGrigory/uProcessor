@@ -2,10 +2,12 @@
 
 `include "ALU.sv"
 `include "DffPIPO_CE_SET.sv" 
-`include "PC_PP.sv" 
+`include "PC.sv" 
+`include "PP_BFM.sv"
 `include "RegisterFile.sv"
 
-module PseudoPP_PC_tb;
+
+module PC_PP_BFM_tb;
 
 logic clk_tb;
 logic nReset_tb;
@@ -39,9 +41,10 @@ wire [7:0] A_out;
 
 // modules modules modules modules modules modules
 
+
 PC PC1(.clk(clk_tb), .nReset(nReset_tb), .addr(PC_Addr));
 
-PP PP1(
+PP_BFM PP1(
 .addr(PC_Addr),        //input 
 .RegAddr(PP_RegAddr),  //outputs
 .ALUCode(PP_ALUCode), 
@@ -101,14 +104,10 @@ nReset_tb = 0;
 end
 
 initial begin
-    $dumpfile("PseudoPP_PC_tb.vcd");
+    $dumpfile("PC_PP_BFM_tb.vcd");
     $dumpvars;
     $dumpon;
 end
-
-
-
-
 
 
 endmodule

@@ -2,7 +2,7 @@
 
 #filename="ALU_tb"
 #filename="RegisterFile_tb"
-filename="PseudoPP_PC_tb"
+filename="PC_PP_BFM_tb"
 
 rm $filename
 rm "${filename}.vcd"   

@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #filename="RegisterFile_tb"
-filename="PseudoPP_PC_tb"
+filename="PC_PP_BFM_tb"
 #filename="ALU_tb"
 
 #rm $filename
