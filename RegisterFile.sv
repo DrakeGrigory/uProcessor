@@ -1,3 +1,9 @@
+/* WHAT IS THIS? 
+// This module is a Register File
+// It contain 4x8bit Registers (Dff) 
+// Output is a multiplexed register output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+*/
+
 `timescale  1ns/1ps
 `include "DffPIPO_CE_SET.sv"
 

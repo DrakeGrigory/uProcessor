@@ -1,3 +1,9 @@
+/* WHAT IS THIS? 
+// This module is a Program Counter
+// It increments itself every clock cycle
+// It outputs the counter value on output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+*/
+
 `include "defines.sv"
 
 module ProgramCounter(
