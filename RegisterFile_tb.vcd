@@ -1,0 +1,202 @@
+$date
+	Mon Nov  4 14:52:21 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ALU $end
+$var wire 8 ! A [7:0] $end
+$var wire 3 " ALUCode [2:0] $end
+$var wire 1 # Ci $end
+$var wire 8 $ R [7:0] $end
+$var reg 1 % Co $end
+$var reg 8 & out [7:0] $end
+$upscope $end
+$scope module Reg_CY $end
+$var wire 1 ' CE $end
+$var wire 1 ( CY_in $end
+$var wire 1 ) clk $end
+$var reg 1 * CY_out $end
+$upscope $end
+$scope module RegisterFile_tb $end
+$var wire 8 + out_tb [7:0] $end
+$var reg 8 , Aku_tb [7:0] $end
+$var reg 1 - CE $end
+$var reg 4 . RegX_tb [3:0] $end
+$var reg 1 / clk_tb $end
+$var reg 1 0 nReset_tb $end
+$scope module RegfisterFile_1 $end
+$var wire 8 1 Aku [7:0] $end
+$var wire 1 - RegCE $end
+$var wire 4 2 RegX [3:0] $end
+$var wire 1 / clk $end
+$var wire 1 0 nReset $end
+$var reg 8 3 out [7:0] $end
+$scope module R0 $end
+$var wire 1 4 CE $end
+$var wire 8 5 D [7:0] $end
+$var wire 1 / clk $end
+$var wire 1 0 nReset $end
+$var reg 8 6 Q [7:0] $end
+$upscope $end
+$scope module R1 $end
+$var wire 1 7 CE $end
+$var wire 8 8 D [7:0] $end
+$var wire 1 / clk $end
+$var wire 1 0 nReset $end
+$var reg 8 9 Q [7:0] $end
+$upscope $end
+$scope module R2 $end
+$var wire 1 : CE $end
+$var wire 8 ; D [7:0] $end
+$var wire 1 / clk $end
+$var wire 1 0 nReset $end
+$var reg 8 < Q [7:0] $end
+$upscope $end
+$scope module R3 $end
+$var wire 1 = CE $end
+$var wire 8 > D [7:0] $end
+$var wire 1 / clk $end
+$var wire 1 0 nReset $end
+$var reg 8 ? Q [7:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx ?
+bx >
+x=
+bx <
+bx ;
+x:
+bx 9
+bx 8
+x7
+bx 6
+bx 5
+x4
+bx 3
+bx 2
+bx 1
+00
+0/
+bx .
+1-
+bx ,
+bx +
+x*
+z)
+z(
+z'
+bx &
+x%
+bz $
+z#
+bz "
+bz !
+$end
+#5000
+b0 +
+b0 3
+b0 6
+b0 9
+b0 <
+b0 ?
+1/
+#6000
+10
+#10000
+14
+07
+0:
+0=
+0/
+b100 ,
+b100 1
+b100 5
+b100 8
+b100 ;
+b100 >
+b1 .
+b1 2
+#15000
+b100 +
+b100 3
+b100 6
+1/
+#20000
+04
+17
+b0 +
+b0 3
+0/
+b101 ,
+b101 1
+b101 5
+b101 8
+b101 ;
+b101 >
+b10 .
+b10 2
+#25000
+b101 +
+b101 3
+b101 9
+1/
+#30000
+07
+1:
+b0 +
+b0 3
+0/
+b110 ,
+b110 1
+b110 5
+b110 8
+b110 ;
+b110 >
+b100 .
+b100 2
+#35000
+b110 +
+b110 3
+b110 <
+1/
+#40000
+0:
+1=
+b0 +
+b0 3
+0/
+b111 ,
+b111 1
+b111 5
+b111 8
+b111 ;
+b111 >
+b1000 .
+b1000 2
+#45000
+b111 +
+b111 3
+b111 ?
+1/
+#50000
+0=
+b0 +
+b0 3
+0/
+b0 .
+b0 2
+#55000
+1/
+#60000
+0/
+#65000
+1/
+#66000

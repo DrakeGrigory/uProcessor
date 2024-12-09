@@ -1,3 +1,5 @@
+`include "defines.sv"
+
 module ALU
 (input [2:0] ALUCode,
  input [7:0] A, //Aku
@@ -11,33 +13,33 @@ module ALU
 
 always @(*) begin
     case (ALUCode)
-        3'd0: begin //ADD
+        `ADD: begin //ADD
             {Co,out} = A + R + Ci;
         end
 
-        3'd1: begin //SUB
+        `SUB: begin //SUB
             {Co,out} = A - R - Ci;
         end
 
-        3'd2: begin //AND
+        `AND: begin //AND
             out = A & R;
             Co = 0;
         end
 
-        3'd3: begin //OR
+        `OR: begin //OR
             out = A | R;
             Co = 0;                
         end
 
-        3'd4: begin //XOR
+        `XOR: begin //XOR
             out = A ^ R;
             Co = 0;   
         end
-        3'd5: begin //NOT
+        `NOT: begin //NOT
             out = ~A;
             Co = 0;
         end
-        3'd6: begin //LD
+        `LD: begin //LD
             out = R;
             Co = 0;
         end

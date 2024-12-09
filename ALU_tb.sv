@@ -1,7 +1,8 @@
 `timescale  1ns/1ps
 
 `include "Regs.sv"
-`include "ALU.sv" 
+`include "ALU.sv"
+`include "DffPIPO_CE.sv" 
 
 module ALU_tb;
 
@@ -14,10 +15,8 @@ logic nReset = 1;
 
 //ALU
 logic [2:0] ALUCode_tb;
-logic [7:0] A_tb = 8'd8;
 logic [7:0] R_tb = 8'd4;
 logic Ci_tb = 0;
-logic Co_tb = 0;
 logic [7:0] out_tb;
 
 //WIRES
@@ -42,7 +41,7 @@ Reg_CY Reg_CY_1(
 .clk(clk_tb)
 );
 
-Aku Aku_1(
+DffPIPO_CE Aku(
 .CE(A_CE_tb),
 .D(ALU_2_RegAku),
 .clk(clk_tb),
@@ -51,7 +50,15 @@ Aku Aku_1(
 );
 
 
-initial begin
+// ====================================================== TB ======================================
+
+initial begin //clk
+forever begin
+    #5 clk_tb = ~clk_tb;
+end
+end
+
+initial begin //start values
 A_CE_tb = 1;
 CY_CE_tb = 1;
 clk_tb = 0;
@@ -59,29 +66,39 @@ clk_tb = 0;
 nReset = 0;
 #6 nReset = 1;
 
-#100 $finish;
+#200 $finish;
 end
 
-initial begin
-forever begin
-    #5 clk_tb = ~clk_tb;
-end
+
+initial begin // ALU Codes
+    ALUCode_tb = `ADD;
+    #10 
+    #10 
+    #10 ALUCode_tb = `SUB;
+    #10 ALUCode_tb = `ADD;
+    #10 ALUCode_tb = `AND;
+    #10 ALUCode_tb = `OR;
+    #10 ALUCode_tb = `ADD;
+    #10 ALUCode_tb = `XOR;
+    #10 ALUCode_tb = `NOT;
+    #10 ALUCode_tb = `LD;
+    #10 ALUCode_tb = `SUB;
+    #10 ALUCode_tb = `ADD;
+    #10 ALUCode_tb = `ADD;
+    #10 ALUCode_tb = `SUB;
+    #10 ALUCode_tb = `NOT;
+    #10 ALUCode_tb = `ADD;
 end
 
-initial begin
-    #1 ALUCode_tb = 3'd0;
-    #10
-    #10 ALUCode_tb = 3'd1;
-    #10 ALUCode_tb = 3'd0;
-end
+
+
+
+
+
 
 initial begin
     $dumpfile("ALU_tb.vcd");
     $dumpvars;
     $dumpon;
 end
-
-
-
-
 endmodule

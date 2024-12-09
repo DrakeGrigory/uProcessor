@@ -1,0 +1,45 @@
+[*]
+[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
+[*] Mon Nov  4 13:11:54 2024
+[*]
+[dumpfile] "/home/student/KG_LAB/Sem2/WDWF/KG_uP/RegisterFile_tb.vcd"
+[dumpfile_mtime] "Mon Nov  4 13:11:36 2024"
+[dumpfile_size] 2168
+[savefile] "/home/student/KG_LAB/Sem2/WDWF/KG_uP/RegisterFile_tb.gtkw"
+[timestart] 0
+[size] 2488 1376
+[pos] -1 -1
+*-14.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] RegisterFile_tb.
+[treeopen] RegisterFile_tb.RegfisterFile_1.
+[sst_width] 233
+[signals_width] 184
+[sst_expanded] 1
+[sst_vpaned_height] 414
+@22
+RegisterFile_tb.Aku_tb[7:0]
+@28
+RegisterFile_tb.CE_tb[3:0]
+RegisterFile_tb.clk_tb
+@22
+RegisterFile_tb.out_tb[7:0]
+RegisterFile_tb.RegfisterFile_1.out[7:0]
+RegisterFile_tb.RegfisterFile_1.R0.D[7:0]
+@28
+RegisterFile_tb.RegfisterFile_1.R0.CE
+@22
+RegisterFile_tb.RegfisterFile_1.R0.Q[7:0]
+@28
+RegisterFile_tb.RegfisterFile_1.R1.CE
+@22
+RegisterFile_tb.RegfisterFile_1.R1.Q[7:0]
+@28
+RegisterFile_tb.RegfisterFile_1.R2.CE
+@22
+RegisterFile_tb.RegfisterFile_1.R2.Q[7:0]
+@28
+RegisterFile_tb.RegfisterFile_1.R3.CE
+@22
+RegisterFile_tb.RegfisterFile_1.R3.Q[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
