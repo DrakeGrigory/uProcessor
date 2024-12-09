@@ -17,6 +17,7 @@ initial begin
     Mem[3] = {`OPCODE_AND,`R3};
     Mem[4] = {`OPCODE_ADD,`R3};
     
+    
 end
 
 assign InsOut = Mem[addr];

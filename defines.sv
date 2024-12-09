@@ -6,6 +6,7 @@
 `define ALU_XOR 3'd4
 `define ALU_NOT 3'd5
 `define ALU_LDR 3'd6
+`define ALU_DEF 3'd7
 
 
 //INSTRUCTION

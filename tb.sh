@@ -1,32 +1,38 @@
 #! /bin/bash
+foldername="tb_files"
 
 #filename="ALU_tb"
 #filename="RegisterFile_tb"
 #filename="PC_PP_BFM_tb"
-filename="PP_ID_tb"
+#filename="PP_ID_tb"
+filename="ID_BFM_tb"
 
-rm $filename
-rm "${filename}.vcd"   
+echo "====================================================================
+              LAUNCHING TEST BENCH COMPILATION:
+====================================================================="
 
-iverilog -g2012 -o "${filename}" "${filename}.sv"
+rm "${foldername}"/$filename
+rm "${foldername}"/"${filename}.vcd"   
 
-if [$? -eq 1]; then
-    echo iverilog failure
-    exit -1
-fi
+iverilog -g2012 -o "${foldername}"/"${filename}" "${filename}.sv"
 
-
-vvp "${filename}"
-
-if [$? -ne 1]; then
-    echo vpp failure
-    exit -1
-fi
+# if [$? -eq 1]; then
+#     echo iverilog failure
+#     exit -1
+# fi
 
 
-gtkwave "${filename}.gtkw" --rcvar 'fontname_signals Monospace 17' --rcvar 'fontname_waves Monospace 12'
+vvp "${foldername}"/"${filename}"
 
-if [$? -ne 1]; then
-    echo gtkw failure
-    exit -1
-fi
+# if [$? -ne 1]; then
+#     echo vpp failure
+#     exit -1
+# fi
+
+
+gtkwave "${foldername}"/"${filename}.vcd" --rcvar 'fontname_signals Monospace 17' --rcvar 'fontname_waves Monospace 12'
+
+# if [$? -ne 1]; then
+#     echo gtkw failure
+#     exit -1
+# fi

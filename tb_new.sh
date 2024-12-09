@@ -3,8 +3,8 @@
 #filename="RegisterFile_tb"
 #filename="PC_PP_BFM_tb"
 #filename="ALU_tb"
-filename="PP_ID_tb"
-
+#filename="PP_ID_tb"
+filename="ID_BFM_tb"
 # rm $filename
 # rm "${filename}.vcd"   
 
