@@ -16,15 +16,15 @@ fi
 
 vvp "${filename}"
 
-# if [$? -ne 1]; then
-#     echo vpp failure
-#     exit -1
-# fi
+if [$? -ne 1]; then
+    echo vpp failure
+    exit -1
+fi
 
 
 gtkwave "${filename}.gtkw" --rcvar 'fontname_signals Monospace 17' --rcvar 'fontname_waves Monospace 12'
 
-# if [$? -ne 1]; then
-#     echo gtkw failure
-#     exit -1
-# fi
+if [$? -ne 1]; then
+    echo gtkw failure
+    exit -1
+fi

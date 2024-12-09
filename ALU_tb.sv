@@ -1,6 +1,6 @@
 `timescale  1ns/1ps
 
-`include "Regs.sv"
+`include "RegCY.sv"
 `include "ALU.sv"
 `include "DffPIPO_CE.sv" 
 
@@ -35,7 +35,7 @@ ALU ALU_1(
 .out(ALU_2_RegAku)
 );
 
-Reg_CY Reg_CY_1(
+RegCY RegCY_1(
 .CE(CY_CE_tb),
 .CY_in(ALU_2_RegCY),
 .clk(clk_tb)

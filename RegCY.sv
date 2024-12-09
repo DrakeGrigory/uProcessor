@@ -1,4 +1,4 @@
-module Reg_CY(
+module RegCY(
 input CE,
 input CY_in,
 input clk,

@@ -1,10 +1,7 @@
 `timescale  1ns/1ps
 
-`include "Regs.sv"
-`include "ALU.sv" 
-
 module RegfisterFile(
-    input [7:0] Aku,
+    input [7:0] A,
     input clk,
     input nReset,
     input [3:0] RegX, //decoder will be placed in ID
@@ -15,7 +12,7 @@ module RegfisterFile(
 wire [7:0] Reg2Mult [0:3];
 
 DffPIPO_CE R0(
-.D(Aku),
+.D(A),
 .CE(RegX[0] & RegCE),
 .clk(clk),
 .nReset(nReset),
@@ -23,7 +20,7 @@ DffPIPO_CE R0(
 );
 
 DffPIPO_CE R1(
-.D(Aku),
+.D(A),
 .CE(RegX[1] & RegCE),
 .clk(clk),
 .nReset(nReset),
@@ -31,7 +28,7 @@ DffPIPO_CE R1(
 );
 
 DffPIPO_CE R2(
-.D(Aku),
+.D(A),
 .CE(RegX[2] & RegCE),
 .clk(clk),
 .nReset(nReset),
@@ -39,7 +36,7 @@ DffPIPO_CE R2(
 );
 
 DffPIPO_CE R3(
-.D(Aku),
+.D(A),
 .CE(RegX[3] & RegCE),
 .clk(clk),
 .nReset(nReset),
