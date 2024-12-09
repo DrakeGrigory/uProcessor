@@ -1,3 +1,10 @@
+/* WHAT IS THIS? 
+The RF_ALU_CY_A_module contains all other modules after ID neccesary for CPU to operate.
+*/
+
+`include "ALU.sv"
+`include "RegisterFile.sv"
+
 module RF_ALU_CY_A_module(
 input clk,
 input nReset, 
@@ -5,10 +12,14 @@ input [3:0] RegAddr,
 input [2:0] ALUCode, 
 input RegCE,
 input CY_CE,
+input nResetCY,
 input A_CE
 );
 
-// WIRES WIRES WIRES WIRES WIRES 
+//============================================================================
+//----------------------------------- WIRES ----------------------------------
+//============================================================================
+
 // RF outputs
 wire [7:0] RF_2_ALU;
 
@@ -22,7 +33,9 @@ wire RegCY_Q;
 //A output
 wire [7:0] A_out;
 
-// MODULES MODULES MODULES MODULES MODULES  
+//============================================================================
+//++++++++++++++++++++++++++++++++++ MODULES +++++++++++++++++++++++++++++++++
+//============================================================================
 
 RegfisterFile RF(
 .RegCE(RegCE),  //inputs
@@ -47,7 +60,7 @@ DffPIPO_CE_SET #(.SIZE(1)) RegCY(
 .D(ALU_Co),
 .clk(clk),
 .Q(RegCY_Q),
-.nReset(nReset | ResetCY)
+.nReset(nReset & nResetCY)
 );
 
 DffPIPO_CE_SET A(

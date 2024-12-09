@@ -1,3 +1,5 @@
+`define tb_path "tb_files/ALU_tb.vcd"
+
 `timescale  1ns/1ps
 
 `include "ALU.sv"
@@ -73,33 +75,33 @@ end
 
 
 initial begin // ALU Codes
-    ALUCode_tb = `ADD;
+    ALUCode_tb = `ALU_ADD;
     #10 
     #10 
-    #10 ALUCode_tb = `SUB;
-    #10 ALUCode_tb = `ADD;
-    #10 ALUCode_tb = `AND;
-    #10 ALUCode_tb = `OR;
-    #10 ALUCode_tb = `ADD;
-    #10 ALUCode_tb = `XOR;
-    #10 ALUCode_tb = `NOT;
-    #10 ALUCode_tb = `LD;
-    #10 ALUCode_tb = `SUB;
-    #10 ALUCode_tb = `ADD;
-    #10 ALUCode_tb = `ADD;
-    #10 ALUCode_tb = `SUB;
-    #10 ALUCode_tb = `NOT;
-    #10 ALUCode_tb = `ADD;
-    #20 ALUCode_tb = `LD;
+    #10 ALUCode_tb = `ALU_SUB;
+    #10 ALUCode_tb = `ALU_ADD;
+    #10 ALUCode_tb = `ALU_AND;
+    #10 ALUCode_tb = `ALU_OR;
+    #10 ALUCode_tb = `ALU_ADD;
+    #10 ALUCode_tb = `ALU_XOR;
+    #10 ALUCode_tb = `ALU_NOT;
+    #10 ALUCode_tb = `ALU_LDR;
+    #10 ALUCode_tb = `ALU_SUB;
+    #10 ALUCode_tb = `ALU_ADD;
+    #10 ALUCode_tb = `ALU_ADD;
+    #10 ALUCode_tb = `ALU_SUB;
+    #10 ALUCode_tb = `ALU_NOT;
+    #10 ALUCode_tb = `ALU_ADD;
+    #20 ALUCode_tb = `ALU_LDR;
 
     //Testing CY
     //Starting A=4;
-    #10 ALUCode_tb = `NOT; R_tb = 8'd10; //251
-    #10 ALUCode_tb = `ADD; //5 + CY
-    #10 ALUCode_tb = `ADD; //16
-    #10 ALUCode_tb = `SUB; //6
-    #10 ALUCode_tb = `SUB; //252 - CY
-    #10 ALUCode_tb = `SUB; //241
+    #10 ALUCode_tb = `ALU_NOT; R_tb = 8'd10; //251
+    #10 ALUCode_tb = `ALU_ADD; //5 + CY
+    #10 ALUCode_tb = `ALU_ADD; //16
+    #10 ALUCode_tb = `ALU_SUB; //6
+    #10 ALUCode_tb = `ALU_SUB; //252 - CY
+    #10 ALUCode_tb = `ALU_SUB; //241
 
 end
 
@@ -110,7 +112,7 @@ end
 
 
 initial begin
-    $dumpfile("ALU_tb.vcd");
+    $dumpfile(`tb_path);
     $dumpvars;
     $dumpon;
 end

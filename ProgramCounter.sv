@@ -1,6 +1,6 @@
 `include "defines.sv"
 
-module PC(
+module ProgramCounter(
 input clk,
 input nReset,
 output reg [4:0] addr

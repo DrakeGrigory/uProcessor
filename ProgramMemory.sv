@@ -1,4 +1,4 @@
-module PP (
+module ProgramMemory (
     input [4:0] addr,
     output reg [5:0] InsOut
 );
@@ -13,9 +13,10 @@ initial begin
 
     Mem[0] = {`OPCODE_ADD,`R1};
     Mem[1] = {`OPCODE_SUB,`R1};
-    Mem[2] = {`OPCODE_ADD,`R2};
-    Mem[3] = {`OPCODE_AND,`R3};
-    Mem[4] = {`OPCODE_ADD,`R3};
+    Mem[2] = {`OPCODE_SUB,`R1};
+    Mem[3] = {`OPCODE_ADD,`R2};
+    Mem[4] = {`OPCODE_AND,`R3};
+    Mem[5] = {`OPCODE_ADD,`R3};
     
     
 end

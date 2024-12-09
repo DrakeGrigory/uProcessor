@@ -1,0 +1,44 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Tue Nov 19 16:04:02 2024
+[*]
+[dumpfile] "/home/kgtest/Documents/Data/KG_uP_14_11_24/tb_files/PM_ID_BFM_tb.vcd"
+[dumpfile_mtime] "Tue Nov 19 13:13:40 2024"
+[dumpfile_size] 5792
+[savefile] "/home/kgtest/Documents/Data/KG_uP_14_11_24/tb_files/PM_ID_BFM_tb.gtkw"
+[timestart] 0
+[size] 1920 993
+[pos] 0 0
+*-15.000001 142200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] PM_ID_BFM_tb.
+[treeopen] PM_ID_BFM_tb.RF_ALU_CY_A_module1.
+[treeopen] PM_ID_BFM_tb.RF_ALU_CY_A_module1.RF.
+[sst_width] 239
+[signals_width] 294
+[sst_expanded] 1
+[sst_vpaned_height] 296
+@22
+PM_ID_BFM_tb.PC_Addr[4:0]
+@28
+PM_ID_BFM_tb.clk_tb
+PM_ID_BFM_tb.nReset_tb
+PM_ID_BFM_tb.ID_RegCE
+PM_ID_BFM_tb.ID_RegAddr[3:0]
+@22
+PM_ID_BFM_tb.RF_ALU_CY_A_module1.RF.R0.Q[7:0]
+PM_ID_BFM_tb.RF_ALU_CY_A_module1.RF.R1.Q[7:0]
+PM_ID_BFM_tb.RF_ALU_CY_A_module1.RF.R2.Q[7:0]
+PM_ID_BFM_tb.RF_ALU_CY_A_module1.RF.R3.Q[7:0]
+@24
+PM_ID_BFM_tb.ID_ALUCode[2:0]
+@28
+PM_ID_BFM_tb.ID_CY_CE
+PM_ID_BFM_tb.RF_ALU_CY_A_module1.RegCY_Q
+PM_ID_BFM_tb.RF_ALU_CY_A_module1.nResetCY
+PM_ID_BFM_tb.ID_A_CE
+@24
+PM_ID_BFM_tb.RF_ALU_CY_A_module1.ALU_2_A[7:0]
+@22
+PM_ID_BFM_tb.RF_ALU_CY_A_module1.A_out[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

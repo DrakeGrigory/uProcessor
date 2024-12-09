@@ -1,4 +1,5 @@
 `timescale  1ns/1ps
+`include "DffPIPO_CE_SET.sv"
 
 module RegfisterFile(
     input [7:0] A,

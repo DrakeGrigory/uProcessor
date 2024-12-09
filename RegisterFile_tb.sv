@@ -1,7 +1,8 @@
+`define tb_path "tb_files/RegisterFile_tb.vcd"
+
 `timescale  1ns/1ps
 
 `include "RegisterFile.sv"
-`include "DffPIPO_CE.sv"
 
 module RegisterFile_tb;
 
@@ -42,7 +43,7 @@ end
 
 
 initial begin // 
-    CE = 1'b1;
+    CE = 1'b1; RegNum_tb = 4'b0000; A_tb = 8'd0;
     #10 RegNum_tb = 4'b0001; A_tb = 8'd4;
     #10 RegNum_tb = 4'b0010; A_tb = 8'd5;
     #10 RegNum_tb = 4'b0100; A_tb = 8'd6;
@@ -51,7 +52,7 @@ initial begin //
 end
 
 initial begin
-    $dumpfile("RegisterFile_tb.vcd");
+    $dumpfile(`tb_path);
     $dumpvars;
     $dumpon;
 end
