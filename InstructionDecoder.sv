@@ -7,7 +7,7 @@ module InstructionDecoder(
 input [`ID_IN_MSB:0] Ins,
 
 
-output logic IDataMem_CE,
+output logic DataMem_CE,
 output logic Reg_CE,   
 output logic [3:0] RegAddr,
 output logic [7:0] Data,
