@@ -7,30 +7,30 @@ module InstructionDecoder(
 input [`ID_IN_MSB:0] Ins,
 
 
-output logic [7:0] ID_DM_Addr,
-output logic ID_DM_CE,
+output logic IDataMem_CE,
 output logic Reg_CE,   
 output logic [3:0] RegAddr,
-output logic [7:0] ImdData,
-output logic Sel,    
-output logic [2:0] ALUCode, 
-output logic nResetCY
-output logic CY_CE,        
-output logic A_CE,         
+output logic [7:0] Data,
+output logic [1:0] Sel,   
+
+output logic [2:0] ALUCode,
+output logic Carry_CE,  
+
+output logic Accu_CE    
 
 );
 
 wire [4:0] OpCode_w;
 wire [2:0] OpCodeSection_w;
+wire [2:0] OpCodeRest_w;
 wire [1:0] RNum_w;
-wire [2:0] ALUCode_w;
-wire [7:0] ImdData_w;
+wire [7:0] Data_w;
 
-assign OpCode_w      = Ins[`ID_IN_MSB   : `ID_IN_MSB-4];         //5 first five MSB bits
-assign OpCodeSection_w      = Ins[`ID_IN_MSB   : `ID_IN_MSB-1];         //2 first two MSB bits
-assign RNum_w        = Ins[`ID_IN_MSB-5 : `ID_IN_MSB-6];         //2 6-7 MSB bit
-assign ALUCode_w     = Ins[`ID_IN_MSB-2 : `ID_IN_MSB-4];         //3 3-5 MSB bits
-assign ImdData_w     = Ins[7:0];
+assign OpCode_w        = Ins[`ID_IN_MSB   : `ID_IN_MSB-4];         //5 first five MSB bits
+assign OpCodeSection_w = Ins[`ID_IN_MSB   : `ID_IN_MSB-1];         //2 first two MSB bits
+assign OpCodeRest_w    = Ins[`ID_IN_MSB-2 : `ID_IN_MSB-4];         //3 3-5 MSB bits
+assign RNum_w          = Ins[`ID_IN_MSB-5 : `ID_IN_MSB-6];         //2 6-7 MSB bit
+assign Data_w          = Ins[7:0];
 
 always @(*) begin
 
@@ -43,7 +43,7 @@ always @(*) begin
      default: RegAddr = 4'b0000;
     endcase 
 
-//RegCE
+//Reg_CE
     if(OpCode_w == `OPCODE_ST_R) begin
         Reg_CE=1;
     end else begin
@@ -51,66 +51,62 @@ always @(*) begin
     end
 
 
+//Sel
+    if(OpCodeSection_w!=`SEC_REST)
+        Sel = OpCodeSection_w;
+    else begin
+        case(OpCodeRest_w)
+            0: Sel = `SEC_R;      // LD_R
+            1: Sel = `SEC_DM;     // LD_MD
+            2: Sel = `SEC_IMD;    // LD_IMD
+            3: Sel = `SEC_R;      // ST_R
+            4: Sel = `SEC_DM;     // ST_DM
+            default: Sel = `SEC_R; //Random choice
+        endcase
+    end
+     
+
 //ALUCode
-    if(OpCodeSection_w!=2'b11) begin   //First 3 instructions sections (0-7,8-15,16-23)
-        if(ALUCode_w<=`ALU_NOT)
-            ALUCode = ALUCode_w;
+    if(OpCodeSection_w != `SEC_REST) begin   //First 3 instructions sections (0-7,8-15,16-23)
+        if(OpCodeRest_w<=`ALU_NOT)
+            ALUCode = OpCodeRest_w;
         else
             ALUCode = `ALU_DEF;
     end else begin              //Last instructions section (24-31)
-        if(ALUCode_w <= 3'd2)   
+        if(OpCodeRest_w <= `LAST_LD_INS)   
             ALUCode = `ALU_LD;  //Load instructions
         else
             ALUCode = `ALU_DEF; //Store instructions
     end
 
 
+//Carry_CE
+
+    if(OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_SUB)  //Every ADD-SUB instruction
+        Carry_CE = 1;
+    else 
+        Carry_CE = 0;
+
+//Accu_CE
     
-
-    // if(OpCode[3] == 1'b0) begin
-    //     ALUCode = ALUCode_w; 
-    // end else begin
-    //     if(OpCode[2]==1'b0) begin
-    //         ALUCode = `ALU_LD;
-    //     end else begin
-    //         ALUCode = `ALU_DEF;
-    //     end
-    // end
-
-//CY_CE AND nResetCY
-    if(OpCode[3:1] == 3'b000) begin
-        CY_CE = 1;
-        nResetCY = 1;
-    end else begin
-        CY_CE = 0;
-        nResetCY = 0;
-    end
-
-//A_CE
-    if(OpCode<=`OPCODE_NOT || OpCode[3:2]==2'b10) begin
-        A_CE = 1;
-    end else begin
-        A_CE = 0;
-    end
+    if (OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_NOT    ) ||
+       (OpCodeSection_w == `SEC_REST && OpCodeRest_w <= `LAST_LD_INS)      
+        Accu_CE = 1;
+    else 
+        Accu_CE = 0;
 
 
+//DataMem_CE
+    if(OpCode_w == `OPCODE_ST_DM)
+        DataMem_CE = 1;
+    else
+        DataMem_CE = 0;
 
 
-
-
-
-//OPCODE 6 - quick fix - no instruction for OPCODE = 6;
-    if(OpCode==4'd6) begin
-        Reg_CE = 0;
-        ALUCode = 3'b111;
-        nResetCY = 1;
-        CY_CE = 0;
-        A_CE = 0;
-    end
-
+//Data: IMD / DM_Addr
+    assign Data = Data_w;
+    
 end
-
-
 
 
 

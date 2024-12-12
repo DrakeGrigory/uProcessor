@@ -50,3 +50,10 @@
 
 //INSTRUCTION DECODER
 `define ID_IN_MSB 12;
+
+`define SEC_R    2'd0;
+`define SEC_DM   2'd1;
+`define SEC_IDM  2'd2;
+`define SEC_REST 2'd3;
+
+`define LAST_LD_INS 3'd2;
