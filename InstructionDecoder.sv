@@ -20,20 +20,22 @@ output logic A_CE,
 
 );
 
-wire [4:0] OpCodeWire;
-wire [1:0] RNumWire;
-wire [2:0] ALUCodeWire;
-wire [7:0] ImdDataWire;
+wire [4:0] OpCode_w;
+wire [2:0] OpCodeSection_w;
+wire [1:0] RNum_w;
+wire [2:0] ALUCode_w;
+wire [7:0] ImdData_w;
 
-assign OpCodeWire      = Ins[`ID_IN_MSB   : `ID_IN_MSB-4];         //5 first MSB bits
-assign RNumWire        = Ins[`ID_IN_MSB-5 : `ID_IN_MSB-6];         //2 6-7 MSB bit
-assign ALUCodeWire = Ins[`ID_IN_MSB-1 : `ID_IN_MSB-3];         //3 2-4 MSB bits
-assign ImdDataWire     = Ins[7:0];
+assign OpCode_w      = Ins[`ID_IN_MSB   : `ID_IN_MSB-4];         //5 first five MSB bits
+assign OpCodeSection_w      = Ins[`ID_IN_MSB   : `ID_IN_MSB-1];         //2 first two MSB bits
+assign RNum_w        = Ins[`ID_IN_MSB-5 : `ID_IN_MSB-6];         //2 6-7 MSB bit
+assign ALUCode_w     = Ins[`ID_IN_MSB-2 : `ID_IN_MSB-4];         //3 3-5 MSB bits
+assign ImdData_w     = Ins[7:0];
 
 always @(*) begin
 
 //RegAddr
-    case (RNumWire)
+    case (RNum_w)
      `R0: RegAddr = 4'b0001; 
      `R1: RegAddr = 4'b0010;
      `R2: RegAddr = 4'b0100;
@@ -42,7 +44,7 @@ always @(*) begin
     endcase 
 
 //RegCE
-    if(OpCodeWire == `OPCODE_ST_R) begin
+    if(OpCode_w == `OPCODE_ST_R) begin
         Reg_CE=1;
     end else begin
         Reg_CE=0;
@@ -50,9 +52,23 @@ always @(*) begin
 
 
 //ALUCode
-    case(ALUCodeWire)
+    if(OpCodeSection_w!=2'b11) begin   //First 3 instructions sections (0-7,8-15,16-23)
+        if(ALUCode_w<=`ALU_NOT)
+            ALUCode = ALUCode_w;
+        else
+            ALUCode = `ALU_DEF;
+    end else begin              //Last instructions section (24-31)
+        if(ALUCode_w <= 3'd2)   
+            ALUCode = `ALU_LD;  //Load instructions
+        else
+            ALUCode = `ALU_DEF; //Store instructions
+    end
+
+
+    
+
     // if(OpCode[3] == 1'b0) begin
-    //     ALUCode = ALUCodeWire; 
+    //     ALUCode = ALUCode_w; 
     // end else begin
     //     if(OpCode[2]==1'b0) begin
     //         ALUCode = `ALU_LD;
