@@ -17,7 +17,6 @@ output logic [2:0] ALUCode,
 output logic Carry_CE,  
 
 output logic Accu_CE    
-
 );
 
 wire [4:0] OpCode_w;
@@ -81,14 +80,12 @@ always @(*) begin
 
 
 //Carry_CE
-
     if(OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_SUB)  //Every ADD-SUB instruction
         Carry_CE = 1;
     else 
         Carry_CE = 0;
 
 //Accu_CE
-    
     if (OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_NOT    ) ||
        (OpCodeSection_w == `SEC_REST && OpCodeRest_w <= `LAST_LD_INS)      
         Accu_CE = 1;
@@ -107,9 +104,5 @@ always @(*) begin
     assign Data = Data_w;
     
 end
-
-
-
-
 
 endmodule
