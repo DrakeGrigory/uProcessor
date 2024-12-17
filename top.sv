@@ -18,30 +18,33 @@ module top(input clk, input nReset);
 wire [4:0] PC_Addr;
 
 // PM outputs
-wire [5:0] PM_Ins;
+wire [12:0] PM_Ins;
 
 // ID outputs
+wire ID_DataMem_CE;
 wire ID_RegCE;
 wire [3:0] ID_RegAddr;
+wire [7:0] ID_Data;
+wire [1:0] ID_SelDataSource;  
 wire [2:0] ID_ALUCode; 
-wire ID_CY_CE;
-wire ID_A_CE;
-wire ID_nResetCY;
+wire ID_Carry_CE;
+wire ID_Accu_CE;
+
 
 // ---------------------------- Second Part -----------------------------------
 
 // RF outputs
-wire [7:0] RF_2_ALU;
+wire [7:0] RegFile_2_ALU;
 
 //ALU output
-wire [7:0] ALU_2_A;
+wire [7:0] ALU_2_Accu;
 wire ALU_Co;
 
 //CY output
 wire RegCY_Q;
 
 //A output
-wire [7:0] A_out;
+wire [7:0] Accu_out;
 
 //============================================================================
 //++++++++++++++++++++++++++++++++++ MODULES +++++++++++++++++++++++++++++++++
@@ -54,15 +57,20 @@ ProgramCounter PC(.clk(clk), .nReset(nReset), .addr(PC_Addr));
 //PROGRAM MEMORY
 ProgramMemory PM(.addr(PC_Addr), .InsOut(PM_Ins));
 
+
+
+
 //INSTRUCTION DECODER
 InstructionDecoder ID(
 .Ins(PM_Ins),          //input 
+.DataMem_CE(ID_DataMem_CE),
 .RegAddr(ID_RegAddr),  //outputs
+.Data(ID_Data),
+.SelDataSource(ID_SelDataSource),
 .ALUCode(ID_ALUCode), 
 .Reg_CE(ID_RegCE),
-.CY_CE(ID_CY_CE),
-.nResetCY(ID_nResetCY),
-.A_CE(ID_A_CE)
+.Carry_CE(ID_Carry_CE),
+.Accu_CE(ID_Accu_CE)
 );
 
 // ---------------------------- Second Part -----------------------------------
@@ -72,39 +80,38 @@ InstructionDecoder ID(
 RegfisterFile RF(
 .RegCE(ID_RegCE),  //inputs
 .RegNum(ID_RegAddr),
-.A(A_out),
+.A(Accu_out),
 .nReset(nReset),
 .clk(clk),
-.out(RF_2_ALU) //output
+.out(RegFile_2_ALU) //output
 );
 
 //ALU
 ALU ALU_1(
 .ALUCode(ID_ALUCode), //inputs
-.R(RF_2_ALU),
-.A(A_out),
+.MemIn(RegFile_2_ALU),
+.Accu(Accu_out),
 .Ci(RegCY_Q), 
 .Co(ALU_Co), //outputs
-.out(ALU_2_A)
+.Out(ALU_2_Accu)
 );
 
 //CARRY
 DffPIPO_CE_SET #(.SIZE(1)) RegCY(
-.CE(ID_CY_CE), //inputs
+.CE(ID_Carry_CE), //inputs
 .D(ALU_Co),
 .clk(clk),
-.nReset(nReset & ID_nResetCY),
+.nReset(nReset & ID_Carry_CE),
 .Q(RegCY_Q) //output
 );
 
 //ACUMULATOR
 DffPIPO_CE_SET A(
-.CE(ID_A_CE), //inputs
-.D(ALU_2_A),
+.CE(ID_Accu_CE), //inputs
+.D(ALU_2_Accu),
 .clk(clk),
 .nReset(nReset),
-.Q(A_out) //output
-
+.Q(Accu_out) //output
 );
 
 

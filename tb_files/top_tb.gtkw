@@ -1,34 +1,41 @@
 [*]
-[*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
-[*] Mon Dec  9 11:20:24 2024
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Tue Dec 17 22:12:31 2024
 [*]
-
-[dumpfile_mtime] "Mon Dec  9 11:16:54 2024"
-[dumpfile_size] 6421
-[savefile] "/home/kgvblmc//Documents/Data/KG_uP_upToDate/tb_files/top_tb.gtkw"
-[timestart] 0
-[size] 1244 1376
-[pos] 0 0
+[dumpfile] "/home/kgvblmc/Documents/Data/KG_uP_upToDate/tb_files/top_tb.vcd"
+[dumpfile_mtime] "Tue Dec 17 22:07:39 2024"
+[dumpfile_size] 7895
+[savefile] "/home/kgvblmc/Documents/Data/KG_uP_upToDate/tb_files/top_tb.gtkw"
+[timestart] 44900
+[size] 1244 993
+[pos] 2419 8
 *-15.000000 139700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.top1.
+[treeopen] top_tb.top1.RegCY.
 [treeopen] top_tb.top1.RF.
-[sst_width] 239
-[signals_width] 333
-[sst_expanded] 1
-[sst_vpaned_height] 645
+[sst_width] 37
+[signals_width] 324
+[sst_expanded] 0
+[sst_vpaned_height] 325
 @28
 top_tb.clk_tb
 top_tb.nReset_tb
-@22
+@24
 top_tb.top1.PC_Addr[4:0]
-top_tb.top1.ID.OpCode[3:0]
-@28
-[color] 3
-top_tb.top1.ID.RNum[1:0]
+@25
+top_tb.top1.ID.OpCode_w[4:0]
 @22
-top_tb.top1.ID_RegAddr[3:0]
+top_tb.top1.PM_Ins[12:0]
 @28
+top_tb.top1.ID.OpCodeSection_w[1:0]
+top_tb.top1.ID.OpCodeRest_w[2:0]
+@22
+top_tb.top1.ID_Data[7:0]
+@28
+top_tb.top1.ID_DataMem_CE
+[color] 3
+top_tb.top1.ID_RegAddr[3:0]
 [color] 2
 top_tb.top1.RF.RegCE
 @22
@@ -40,22 +47,15 @@ top_tb.top1.RF.R1.Q[7:0]
 top_tb.top1.RF.R2.Q[7:0]
 [color] 7
 top_tb.top1.RF.R3.Q[7:0]
+top_tb.top1.RegFile_2_ALU[7:0]
 @28
+top_tb.top1.ID_SelDataSource[1:0]
 top_tb.top1.ID_ALUCode[2:0]
-@22
-top_tb.top1.ALU_1.R[7:0]
-top_tb.top1.ALU_1.A[7:0]
-@28
+top_tb.top1.ID_Carry_CE
+top_tb.top1.ID_Accu_CE
 [color] 2
-top_tb.top1.ID_CY_CE
 top_tb.top1.RegCY_Q
-top_tb.top1.RegCY.nReset
 @22
-top_tb.top1.ALU_2_A[7:0]
-@28
-[color] 2
-top_tb.top1.ID_A_CE
-@22
-top_tb.top1.A_out[7:0]
+top_tb.top1.Accu_out[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

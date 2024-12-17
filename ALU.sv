@@ -3,49 +3,49 @@
 module ALU
 (input [2:0] ALUCode,
  input [7:0] Accu, //Aku
- input [7:0] memIn, //Reg
+ input [7:0] MemIn, //Reg
  input Ci,
  
  output logic Co,
- output logic [7:0] out
+ output logic [7:0] Out
  
 );
 
 always @(*) begin
     case (ALUCode)
         `ALU_ADD: begin //ADD
-            {Co,out} = Accu + memIn + Ci;
+            {Co,Out} = Accu + MemIn + Ci;
         end
 
         `ALU_SUB: begin //SUB
-            {Co,out} = Accu - memIn - Ci;
+            {Co,Out} = Accu - MemIn - Ci;
         end
 
         `ALU_AND: begin //AND
-            out = Accu & memIn;
+            Out = Accu & MemIn;
             Co = 0;
         end
 
         `ALU_OR: begin //OR
-            out = Accu | memIn;
+            Out = Accu | MemIn;
             Co = 0;                
         end
 
         `ALU_XOR: begin //XOR
-            out = Accu ^ memIn;
+            Out = Accu ^ MemIn;
             Co = 0;   
         end
         `ALU_NOT: begin //NOT
-            out = ~Accu;
+            Out = ~Accu;
             Co = 0;
         end
         `ALU_LD: begin //LD
-            out = memIn;
+            Out = MemIn;
             Co = 0;
         end
         default:
         begin
-            out = 0;
+            Out = 0;
             Co = 0;
         end
     endcase

@@ -43,17 +43,19 @@
 `define OPCODE_NOP    5'd31
 
 
-`define R0 2'd0`
-`define R1 2'd1`
-`define R2 2'd2`
-`define R3 2'd3
+`define R0 {2'd0,6'd0}
+`define R1 {2'd1,6'd0}
+`define R2 {2'd2,6'd0}
+`define R3 {2'd3,6'd0}
 
 //INSTRUCTION DECODER
 `define PM_ID_INS_WIDTH 13;
 
-`define SEC_R    2'd0;
-`define SEC_DM   2'd1;
-`define SEC_IDM  2'd2;
-`define SEC_REST 2'd3;
+`define SEC_R    2'd0
+`define SEC_DM   2'd1
+`define SEC_IMD  2'd2
 
-`define LAST_LD_INS 3'd2;
+`define SEC_REST 2'd3
+
+`define LAST_LD_INS 3'd2
+

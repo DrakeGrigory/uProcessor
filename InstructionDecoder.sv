@@ -4,14 +4,14 @@
 */
 
 module InstructionDecoder(
-input [`PM_ID_INS_WIDTH-1:0] Ins,
+input [12:0] Ins,
 
 
 output logic DataMem_CE,
 output logic Reg_CE,   
 output logic [3:0] RegAddr,
 output logic [7:0] Data,
-output logic [1:0] Sel,   
+output logic [1:0] SelDataSource,   
 
 output logic [2:0] ALUCode,
 output logic Carry_CE,  
@@ -19,26 +19,28 @@ output logic Carry_CE,
 output logic Accu_CE    
 );
 
+parameter InsWidth = `PM_ID_INS_WIDTH;
+
 wire [4:0] OpCode_w;
-wire [2:0] OpCodeSection_w;
+wire [1:0] OpCodeSection_w;
 wire [2:0] OpCodeRest_w;
 wire [1:0] RNum_w;
 wire [7:0] Data_w;
 
-assign OpCode_w        = Ins[`PM_ID_INS_WIDTH-1 : `PM_ID_INS_WIDTH-5];         //5 first five MSB bits
-assign OpCodeSection_w = Ins[`PM_ID_INS_WIDTH-1 : `PM_ID_INS_WIDTH-2];         //2 first two MSB bits
-assign OpCodeRest_w    = Ins[`PM_ID_INS_WIDTH-3 : `PM_ID_INS_WIDTH-5];         //3 3-5 MSB bits
-assign RNum_w          = Ins[`PM_ID_INS_WIDTH-6 : `PM_ID_INS_WIDTH-7];         //2 6-7 MSB bit
+assign OpCode_w        = Ins[InsWidth-1 : InsWidth-5];         //5 first five MSB bits
+assign OpCodeSection_w = Ins[InsWidth-1 : InsWidth-2];         //2 first two MSB bits
+assign OpCodeRest_w    = Ins[InsWidth-3 : InsWidth-5];         //3 3-5 MSB bits
+assign RNum_w          = Ins[InsWidth-6 : InsWidth-7];         //2 6-7 MSB bit
 assign Data_w          = Ins[7:0];
 
 always @(*) begin
 
 //RegAddr
     case (RNum_w)
-     `R0: RegAddr = 4'b0001; 
-     `R1: RegAddr = 4'b0010;
-     `R2: RegAddr = 4'b0100;
-     `R3: RegAddr = 4'b1000;
+     0: RegAddr = 4'b0001;
+     1: RegAddr = 4'b0010;
+     2: RegAddr = 4'b0100;
+     3: RegAddr = 4'b1000;
      default: RegAddr = 4'b0000;
     endcase 
 
@@ -50,17 +52,17 @@ always @(*) begin
     end
 
 
-//Sel
-    if(OpCodeSection_w!=`SEC_REST)
-        Sel = OpCodeSection_w;
-    else begin
+//SelDataSource
+    if(OpCodeSection_w!=`SEC_REST) begin
+        SelDataSource = OpCodeSection_w;
+    end else begin
         case(OpCodeRest_w)
-            0: Sel = `SEC_R;      // LD_R
-            1: Sel = `SEC_DM;     // LD_MD
-            2: Sel = `SEC_IMD;    // LD_IMD
-            3: Sel = `SEC_R;      // ST_R
-            4: Sel = `SEC_DM;     // ST_DM
-            default: Sel = `SEC_R; //Random choice
+            0: SelDataSource = `SEC_R;      // LD_R
+            1: SelDataSource = `SEC_DM;     // LD_MD
+            2: SelDataSource = `SEC_IMD;    // LD_IMD
+            3: SelDataSource = `SEC_R;      // ST_R
+            4: SelDataSource = `SEC_DM;     // ST_DM
+            default: SelDataSource = `SEC_R; //Random choice
         endcase
     end
      
@@ -86,8 +88,8 @@ always @(*) begin
         Carry_CE = 0;
 
 //Accu_CE
-    if (OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_NOT    ) ||
-       (OpCodeSection_w == `SEC_REST && OpCodeRest_w <= `LAST_LD_INS)      
+    if ((OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_NOT    ) ||
+       (OpCodeSection_w == `SEC_REST && OpCodeRest_w <= `LAST_LD_INS))  
         Accu_CE = 1;
     else 
         Accu_CE = 0;
@@ -104,5 +106,6 @@ always @(*) begin
     assign Data = Data_w;
     
 end
+
 
 endmodule

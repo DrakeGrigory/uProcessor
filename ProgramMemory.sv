@@ -1,14 +1,14 @@
 module ProgramMemory (
     input [4:0] addr,
-    output reg [`PM_ID_INS_WIDTH-1:0] InsOut
+    output reg [12:0] InsOut
 );
 
 integer i=0;
-reg [5:0] Mem [31:0];
+reg [12:0] Mem [31:0];
 
 initial begin
     for(i=0; i<31; i=i+1) begin
-        Mem[i] = {`OPCODE_NOP,2'bxx};
+        Mem[i] = {`OPCODE_NOP,8'bxx};
     end
 
     //TESTING CARRY
