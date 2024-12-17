@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.103 (w)1999-2019 BSI
 [*] Mon Dec  9 11:20:24 2024
 [*]
-[dumpfile] "/home/student/Downloads/uP_901224/tb_files/top_tb.vcd"
+
 [dumpfile_mtime] "Mon Dec  9 11:16:54 2024"
 [dumpfile_size] 6421
-[savefile] "/home/student/Downloads/uP_901224/tb_files/top_tb.gtkw"
+[savefile] "/home/kgvblmc//Documents/Data/KG_uP_upToDate/tb_files/top_tb.gtkw"
 [timestart] 0
 [size] 1244 1376
 [pos] 0 0

@@ -1,6 +1,6 @@
 module ProgramMemory (
     input [4:0] addr,
-    output reg [12:0] InsOut
+    output reg [`PM_ID_INS_WIDTH-1:0] InsOut
 );
 
 integer i=0;

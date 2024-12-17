@@ -4,7 +4,7 @@
 */
 
 module InstructionDecoder(
-input [`ID_IN_MSB:0] Ins,
+input [`PM_ID_INS_WIDTH-1:0] Ins,
 
 
 output logic DataMem_CE,
@@ -25,10 +25,10 @@ wire [2:0] OpCodeRest_w;
 wire [1:0] RNum_w;
 wire [7:0] Data_w;
 
-assign OpCode_w        = Ins[`ID_IN_MSB   : `ID_IN_MSB-4];         //5 first five MSB bits
-assign OpCodeSection_w = Ins[`ID_IN_MSB   : `ID_IN_MSB-1];         //2 first two MSB bits
-assign OpCodeRest_w    = Ins[`ID_IN_MSB-2 : `ID_IN_MSB-4];         //3 3-5 MSB bits
-assign RNum_w          = Ins[`ID_IN_MSB-5 : `ID_IN_MSB-6];         //2 6-7 MSB bit
+assign OpCode_w        = Ins[`PM_ID_INS_WIDTH-1 : `PM_ID_INS_WIDTH-5];         //5 first five MSB bits
+assign OpCodeSection_w = Ins[`PM_ID_INS_WIDTH-1 : `PM_ID_INS_WIDTH-2];         //2 first two MSB bits
+assign OpCodeRest_w    = Ins[`PM_ID_INS_WIDTH-3 : `PM_ID_INS_WIDTH-5];         //3 3-5 MSB bits
+assign RNum_w          = Ins[`PM_ID_INS_WIDTH-6 : `PM_ID_INS_WIDTH-7];         //2 6-7 MSB bit
 assign Data_w          = Ins[7:0];
 
 always @(*) begin

@@ -49,7 +49,7 @@
 `define R3 2'd3
 
 //INSTRUCTION DECODER
-`define ID_IN_MSB 12;
+`define PM_ID_INS_WIDTH 13;
 
 `define SEC_R    2'd0;
 `define SEC_DM   2'd1;
