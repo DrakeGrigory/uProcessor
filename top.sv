@@ -17,7 +17,7 @@ module top(input clk, input nReset);
 //============================================================================
 
 // PC outputs
-wire [4:0] PC_Addr;
+wire [5:0] PC_Addr;
 
 // PM outputs
 wire [12:0] PM_Ins;

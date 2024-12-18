@@ -60,8 +60,8 @@ always @(*) begin
             0: SelDataSource = `SEC_R;      // LD_R
             1: SelDataSource = `SEC_DM;     // LD_MD
             2: SelDataSource = `SEC_IMD;    // LD_IMD
-            3: SelDataSource = `SEC_R;      // ST_R
-            4: SelDataSource = `SEC_DM;     // ST_DM
+            3: SelDataSource = `SEC_DM;      // ST_R
+            4: SelDataSource = `SEC_R;     // ST_DM
             default: SelDataSource = `SEC_R; //Random choice
         endcase
     end

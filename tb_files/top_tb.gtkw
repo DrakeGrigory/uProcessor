@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
-[*] Wed Dec 18 18:47:52 2024
+[*] Wed Dec 18 21:33:57 2024
 [*]
 [dumpfile] "/home/kgvblmc/Documents/Data/KG_uP_upToDate/tb_files/top_tb.vcd"
-[dumpfile_mtime] "Wed Dec 18 18:44:19 2024"
-[dumpfile_size] 10425
+[dumpfile_mtime] "Wed Dec 18 21:33:28 2024"
+[dumpfile_size] 16804
 [savefile] "/home/kgvblmc/Documents/Data/KG_uP_upToDate/tb_files/top_tb.gtkw"
-[timestart] 4400
+[timestart] 74400
 [size] 1920 993
-[pos] 2369 8
-*-15.600000 82300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] 2343 0
+*-15.600000 231600 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.top1.
 [treeopen] top_tb.top1.RegCY.
@@ -18,16 +18,18 @@
 [signals_width] 324
 [sst_expanded] 1
 [sst_vpaned_height] 325
+@24
+top_tb.top1.PC.addr[5:0]
 @28
 top_tb.clk_tb
 top_tb.nReset_tb
 @24
-top_tb.top1.PC_Addr[4:0]
 top_tb.top1.ID.OpCode_w[4:0]
 @22
 top_tb.top1.PM_Ins[12:0]
-@28
+@24
 top_tb.top1.ID.OpCodeSection_w[1:0]
+@28
 top_tb.top1.ID.OpCodeRest_w[2:0]
 [color] 3
 top_tb.top1.ID_RegAddr[3:0]
@@ -44,16 +46,19 @@ top_tb.top1.RF.R2.Q[7:0]
 top_tb.top1.RF.R3.Q[7:0]
 @28
 top_tb.top1.ID_DataMem_WE
-@24
-top_tb.top1.ID_Data[7:0]
 @25
+[color] 1
+top_tb.top1.ID_Data[7:0]
+@24
 top_tb.top1.ID_SelDataSource[1:0]
 @28
 top_tb.top1.ID_ALUCode[2:0]
 top_tb.top1.ID_Carry_CE
 top_tb.top1.ID_Accu_CE
-@22
+@24
 [color] 2
 top_tb.top1.Accu_out[7:0]
+[color] 7
+top_tb.top1.DataMem_2_Mult[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

@@ -36,7 +36,7 @@
 
 `define OPCODE_LD_R   {2'b11, 3'd0}
 `define OPCODE_LD_DM  {2'b11, 3'd1}
-`define OPCODE_LD_IDM {2'b11, 3'd2}
+`define OPCODE_LD_IMD {2'b11, 3'd2}
 `define OPCODE_ST_DM  {2'b11, 3'd3}
 `define OPCODE_ST_R   {2'b11, 3'd4}
 

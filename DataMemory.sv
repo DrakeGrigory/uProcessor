@@ -15,7 +15,7 @@ begin
     if(nReset==0) begin             //RESET
 
         for(i=0; i<DataLen; i=i+1) begin
-            DataMem[i] = {8'bxxxx_1001};
+            DataMem[i] = i;
         end
 
     end else begin                  //Normal Operations
@@ -23,13 +23,21 @@ begin
         if(WriteEnable==1) begin    // Write
 
             DataMem[Addr] = Accu;
-            DataOut = 8'b0;
-        end else begin              // Read
 
-            DataOut = DataMem[Addr];
+        end else begin              // Read
+            DataMem[Addr] = DataMem[Addr];
+
 
         end
 
     end
+end
+
+always @(*) begin //I wonder what synthesis will discover.
+                
+    if(WriteEnable==1)
+        DataOut = 8'b0;
+    else
+        DataOut = DataMem[Addr];
 end
 endmodule
