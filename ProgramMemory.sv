@@ -7,8 +7,8 @@ integer i=0;
 reg [12:0] Mem [31:0];
 
 initial begin
-    for(i=0; i<31; i=i+1) begin
-        Mem[i] = {`OPCODE_NOP,8'bxx};
+    for(i=0; i<32; i=i+1) begin
+        Mem[i] = {`OPCODE_NOP,8'bxxxx_xxxx};
     end
 
     //TESTING CARRY

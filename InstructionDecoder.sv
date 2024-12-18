@@ -7,7 +7,7 @@ module InstructionDecoder(
 input [12:0] Ins,
 
 
-output logic DataMem_CE,
+output logic DataMem_WE,
 output logic Reg_CE,   
 output logic [3:0] RegAddr,
 output logic [7:0] Data,
@@ -95,11 +95,11 @@ always @(*) begin
         Accu_CE = 0;
 
 
-//DataMem_CE
+//DataMem_WE
     if(OpCode_w == `OPCODE_ST_DM)
-        DataMem_CE = 1;
+        DataMem_WE = 1;
     else
-        DataMem_CE = 0;
+        DataMem_WE = 0;
 
 
 //Data: IMD / DM_Addr
