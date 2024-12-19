@@ -4,7 +4,8 @@ foldername="tb_files"
 #filename="ALU_tb"
 #filename="RegisterFile_tb"
 #filename="PM_ID_BFM_tb"
-filename="AllModulesV1_tb"
+#filename="AllModulesV1_tb"
+filename="PC_tb"
 
 echo "====================================================================
               LAUNCHING TEST BENCH COMPILATION:

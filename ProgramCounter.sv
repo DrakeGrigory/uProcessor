@@ -7,20 +7,24 @@
 `include "defines.sv"
 
 module ProgramCounter(
+input WriteEnable,
 input clk,
 input nReset,
-output reg [5:0] addr
+input  logic [5:0] AddrIn,
+output logic [5:0] AddrOut
 );
 
-initial begin
-    addr = 6'd0;
-end
+
 
 always @(posedge clk) begin
-    if(nReset!=0)
-    addr = addr +1;
-    else
-    addr = 6'd0;
+    if(nReset==0 || (WriteEnable==1 && AddrIn == 6'd0))
+        AddrOut = 6'd0;
+    else begin
+        if (WriteEnable==1)
+            AddrOut = AddrIn;
+        else
+            AddrOut = AddrOut + 1;
+    end   
 end
 
 endmodule

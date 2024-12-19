@@ -1,0 +1,28 @@
+[*]
+[*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
+[*] Thu Dec 19 17:21:19 2024
+[*]
+[dumpfile] "/home/kgvblmc/Documents/Data/KG_uP_upToDate/tb_files/PC_tb.vcd"
+[dumpfile_mtime] "Thu Dec 19 17:21:09 2024"
+[dumpfile_size] 1634
+[savefile] "/home/kgvblmc/Documents/Data/KG_uP_upToDate/tb_files/PC_tb.gtkw"
+[timestart] 0
+[size] 1920 993
+[pos] -1 -1
+*-15.300000 16700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] PC_tb.
+[sst_width] 239
+[signals_width] 240
+[sst_expanded] 1
+[sst_vpaned_height] 296
+@28
+PC_tb.clk_tb
+PC_tb.nReset_tb
+@25
+PC_tb.AddrOut_tb[5:0]
+@28
+PC_tb.WriteEnable_tb
+@22
+PC_tb.AddrIn_tb[5:0]
+[pattern_trace] 1
+[pattern_trace] 0

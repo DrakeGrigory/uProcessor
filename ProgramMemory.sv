@@ -68,6 +68,11 @@ initial begin
     Mem[imdIns+7] = {`OPCODE_XOR_IMD,8'hBE};   // 0000_1111 ^ 1011_1110 = 1011_0001 = 177
     Mem[imdIns+8] = {`OPCODE_NOT,   8'd219};  //ERR ERR ERR A~=A; Data shouldnt count = 78
 
+
+// CREATING JMPs?
+    
+
+
 end 
 
 assign InsOut = Mem[addr];

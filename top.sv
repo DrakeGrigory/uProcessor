@@ -63,7 +63,7 @@ wire [7:0] Accu_out;
 ProgramCounter PC(.clk(clk), .nReset(nReset), .addr(PC_Addr));
 
 //PROGRAM MEMORY
-ProgramMemory PM(.addr(PC_Addr), .InsOut(PM_Ins));
+ProgramMemory PM(.AddrOut(PC_Addr), .InsOut(PM_Ins));
 
 //INSTRUCTION DECODER
 InstructionDecoder ID(

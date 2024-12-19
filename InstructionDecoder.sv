@@ -16,7 +16,7 @@ output logic [1:0] SelDataSource,
 output logic [2:0] ALUCode,
 output logic Carry_CE,  
 
-output logic Accu_CE    
+output logic Accu_CE
 );
 
 parameter InsWidth = `PM_ID_INS_WIDTH;
