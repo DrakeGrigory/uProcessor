@@ -16,7 +16,9 @@ output logic [1:0] SelDataSource,
 output logic [2:0] ALUCode,
 output logic Carry_CE,  
 
-output logic Accu_CE
+output logic Accu_CE,
+
+output logic [6:0] ControlPC
 );
 
 parameter InsWidth = `PM_ID_INS_WIDTH;
@@ -25,14 +27,16 @@ parameter InsWidth = `PM_ID_INS_WIDTH;
 wire [4:0] OpCode_w;        // The OpCode of instruction - 5 bits
 wire [1:0] OpCodeSection_w; // The OpCode section of instruction - there are 4 sections: Register, DataMem, ImmediateData, Rest
 wire [2:0] OpCodeRest_w;    // Opcode without OpCodeSection - so the REST 3 bits of OpCode
-wire [1:0] RNum_w;          // Register Number - overlaps with Data
+wire [1:0] RNum_w;          // Register Number - overlaps with Data_w
 wire [7:0] Data_w;          // Data part of instruction - 8 bits
+wire [5:0] PCAddrIn;        // Input address of Program Counter pointing to the jump address. First 6 LSB of Data_w (overlaps) 
 
 assign OpCode_w        = Ins[InsWidth-1 : InsWidth-5];         //5 first five MSB bits
 assign OpCodeSection_w = Ins[InsWidth-1 : InsWidth-2];         //2 first two MSB bits
 assign OpCodeRest_w    = Ins[InsWidth-3 : InsWidth-5];         //3 3-5 MSB bits
 assign RNum_w          = Ins[InsWidth-6 : InsWidth-7];         //2 6-7 MSB bit
 assign Data_w          = Ins[7:0];
+assign PCAddrIn        = Ins[5:0];
 
 always @(*) begin
 
@@ -92,6 +96,10 @@ always @(*) begin
 //Data: IMD / DM_Addr
     assign Data = Data_w;
     
+
+//ControlPC
+    ControlPC = (OpCodeSection_w != `SEC_REST && OpCodeRest_w == `JMP) ? {1'b1, PCAddrIn} : {7'd0};
+
 end
 
 

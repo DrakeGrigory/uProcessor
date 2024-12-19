@@ -31,6 +31,7 @@ wire [1:0] ID_SelDataSource;
 wire [2:0] ID_ALUCode; 
 wire ID_Carry_CE;
 wire ID_Accu_CE;
+wire [6:0] ID_ControlPC;
 
 
 // ---------------------------- Second Part -----------------------------------
@@ -60,10 +61,16 @@ wire [7:0] Accu_out;
 
 
 //PROGRAM COUNTER
-ProgramCounter PC(.clk(clk), .nReset(nReset), .addr(PC_Addr));
+ProgramCounter PC(
+.WriteEnable(ID_ControlPC[6]),
+.clk(clk),
+.nReset(nReset),
+.AddrIn(ID_ControlPC[5:0]),
+.AddrOut(PC_Addr)
+);
 
 //PROGRAM MEMORY
-ProgramMemory PM(.AddrOut(PC_Addr), .InsOut(PM_Ins));
+ProgramMemory PM(.addr(PC_Addr), .InsOut(PM_Ins));
 
 //INSTRUCTION DECODER
 InstructionDecoder ID(
@@ -75,7 +82,8 @@ InstructionDecoder ID(
 .ALUCode(ID_ALUCode), 
 .Reg_CE(ID_RegCE),
 .Carry_CE(ID_Carry_CE),
-.Accu_CE(ID_Accu_CE)
+.Accu_CE(ID_Accu_CE),
+.ControlPC(ID_ControlPC)
 );
 
 // ---------------------------- Second Part -----------------------------------

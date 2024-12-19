@@ -54,5 +54,6 @@
 `define SEC_IMD  2'd2
 `define SEC_REST 2'd3
 
+`define JMP 3'd5
 
 
