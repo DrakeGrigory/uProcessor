@@ -30,9 +30,9 @@ initial begin
     Mem[9]  = {`OPCODE_ADD_R,`R3}; //12
     Mem[10] = {`OPCODE_ADD_R,`R2}; // 14 = 1110
     //TESTING AND
-    Mem[11] = {`OPCODE_AND_R,`R3}; // 1110 & 0110 = 0110
+    Mem[11] = {`OPCODE_AND_R,`R3}; // 1110 & 0110 = 0110 = 6
     //TESTING NOT
-    Mem[12] = {`OPCODE_NOT_R,`R0}; //249
+    Mem[12] = {`OPCODE_NOT,`R0}; //249
     //TESTING OR
     Mem[13] = {`OPCODE_OR_R ,`R3}; //255
     //TESTING LD
@@ -52,7 +52,7 @@ initial begin
     Mem[dmIns+5] = {`OPCODE_ST_DM, 8'd253};  // DM[253] = 14        CHECK THIS
     Mem[dmIns+6] = {`OPCODE_LD_DM, 8'd15};   // A = DM[15] = 15
     Mem[dmIns+7] = {`OPCODE_XOR_DM,8'hBE};   // 0000_1111 ^ 1011_1110 = 1011_0001 = 177
-    Mem[dmIns+8] = {`OPCODE_NOT_DM,8'd219};  //ERR ERR ERR A~=A; Data shouldnt count = 78
+    Mem[dmIns+8] = {`OPCODE_NOT,8'd219};  //ERR ERR ERR A~=A; Data shouldnt count = 78
     Mem[dmIns+9] = {`OPCODE_LD_DM, 8'd253};  //A=14
     Mem[dmIns+10] = {`OPCODE_NOP,`R1};   
     Mem[dmIns+11] = {`OPCODE_NOP,`R2};   
@@ -66,7 +66,7 @@ initial begin
     Mem[imdIns+5] = {`OPCODE_OR_IMD, 8'd8};    // A=1110 = 14 
     Mem[imdIns+6] = {`OPCODE_LD_IMD, 8'd15};   // A = 15
     Mem[imdIns+7] = {`OPCODE_XOR_IMD,8'hBE};   // 0000_1111 ^ 1011_1110 = 1011_0001 = 177
-    Mem[imdIns+8] = {`OPCODE_NOT_IMD,8'd219};  //ERR ERR ERR A~=A; Data shouldnt count = 78
+    Mem[imdIns+8] = {`OPCODE_NOT,8'd219};  //ERR ERR ERR A~=A; Data shouldnt count = 78
 
 end 
 

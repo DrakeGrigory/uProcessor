@@ -4,11 +4,11 @@
 */
 
 module InstructionDecoder(
-input [12:0] Ins,
+input [12:0] Ins,                   //Instruction from Program Memory
 
 
-output logic DataMem_WE,
-output logic Reg_CE,   
+output logic DataMem_WE,            //Write Enable for Data Mem
+output logic Reg_CE,                //shouldnt all CE be WE?
 output logic [3:0] RegAddr,
 output logic [7:0] Data,
 output logic [1:0] SelDataSource,   
@@ -21,11 +21,12 @@ output logic Accu_CE
 
 parameter InsWidth = `PM_ID_INS_WIDTH;
 
-wire [4:0] OpCode_w;
-wire [1:0] OpCodeSection_w;
-wire [2:0] OpCodeRest_w;
-wire [1:0] RNum_w;
-wire [7:0] Data_w;
+// Wires created for easier access to Instruction
+wire [4:0] OpCode_w;        // The OpCode of instruction - 5 bits
+wire [1:0] OpCodeSection_w; // The OpCode section of instruction - there are 4 sections: Register, DataMem, ImmediateData, Rest
+wire [2:0] OpCodeRest_w;    // Opcode without OpCodeSection - so the REST 3 bits of OpCode
+wire [1:0] RNum_w;          // Register Number - overlaps with Data
+wire [7:0] Data_w;          // Data part of instruction - 8 bits
 
 assign OpCode_w        = Ins[InsWidth-1 : InsWidth-5];         //5 first five MSB bits
 assign OpCodeSection_w = Ins[InsWidth-1 : InsWidth-2];         //2 first two MSB bits
@@ -67,17 +68,23 @@ always @(*) begin
     end
      
 
-//ALUCode
+//ALUCode and Accu_CE
     if(OpCodeSection_w != `SEC_REST) begin   //First 3 instructions sections (0-7,8-15,16-23)
-        if(OpCodeRest_w<=`ALU_NOT)
+        if(OpCodeRest_w<=`ALU_XOR) begin
             ALUCode = OpCodeRest_w;
-        else
+            Accu_CE = 1;
+        end else begin
             ALUCode = `ALU_DEF;
+            Accu_CE = 0;
+        end
     end else begin              //Last instructions section (24-31)
-        if(OpCodeRest_w <= `LAST_LD_INS)   
-            ALUCode = `ALU_LD;  //Load instructions
-        else
-            ALUCode = `ALU_DEF; //Store instructions
+
+        case(OpCodeRest_w)
+            0,1,2:   begin ALUCode =  `ALU_LD;  Accu_CE = 1; end //Load  instructions
+            5:       begin ALUCode =  `ALU_NOT; Accu_CE = 1; end //Not   instruction
+            default: begin ALUCode =  `ALU_DEF; Accu_CE = 0; end
+        endcase
+
     end
 
 
@@ -88,11 +95,11 @@ always @(*) begin
         Carry_CE = 0;
 
 //Accu_CE
-    if ((OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_NOT    ) ||
-       (OpCodeSection_w == `SEC_REST && OpCodeRest_w <= `LAST_LD_INS))  
-        Accu_CE = 1;
-    else 
-        Accu_CE = 0;
+    // if ((OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_XOR    ) ||
+    //    (OpCodeSection_w == `SEC_REST && (OpCodeRest_w <= `LAST_LD_INS  || OpCodeRest_w == `LAST_LD_INS)))  
+    //     Accu_CE = 1;
+    // else 
+    //     Accu_CE = 0;
 
 
 //DataMem_WE

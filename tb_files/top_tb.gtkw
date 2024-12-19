@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.116 (w)1999-2023 BSI
-[*] Wed Dec 18 21:33:57 2024
+[*] Thu Dec 19 14:04:09 2024
 [*]
 [dumpfile] "/home/kgvblmc/Documents/Data/KG_uP_upToDate/tb_files/top_tb.vcd"
-[dumpfile_mtime] "Wed Dec 18 21:33:28 2024"
-[dumpfile_size] 16804
+[dumpfile_mtime] "Thu Dec 19 13:52:31 2024"
+[dumpfile_size] 16410
 [savefile] "/home/kgvblmc/Documents/Data/KG_uP_upToDate/tb_files/top_tb.gtkw"
-[timestart] 74400
+[timestart] 0
 [size] 1920 993
 [pos] 2343 0
-*-15.600000 231600 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.600000 130000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.top1.
 [treeopen] top_tb.top1.RegCY.
@@ -46,15 +46,16 @@ top_tb.top1.RF.R2.Q[7:0]
 top_tb.top1.RF.R3.Q[7:0]
 @28
 top_tb.top1.ID_DataMem_WE
-@25
+@24
 [color] 1
 top_tb.top1.ID_Data[7:0]
-@24
 top_tb.top1.ID_SelDataSource[1:0]
-@28
 top_tb.top1.ID_ALUCode[2:0]
+@28
 top_tb.top1.ID_Carry_CE
 top_tb.top1.ID_Accu_CE
+@25
+top_tb.top1.ALU_2_Accu[7:0]
 @24
 [color] 2
 top_tb.top1.Accu_out[7:0]
