@@ -46,12 +46,7 @@ always @(*) begin
     endcase 
 
 //Reg_CE
-    if(OpCode_w == `OPCODE_ST_R) begin
-        Reg_CE=1;
-    end else begin
-        Reg_CE=0;
-    end
-
+    Reg_CE = (OpCode_w == `OPCODE_ST_R) ? 1 : 0;
 
 //SelDataSource
     if(OpCodeSection_w!=`SEC_REST) begin
@@ -89,25 +84,10 @@ always @(*) begin
 
 
 //Carry_CE
-    if(OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_SUB)  //Every ADD-SUB instruction
-        Carry_CE = 1;
-    else 
-        Carry_CE = 0;
-
-//Accu_CE
-    // if ((OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_XOR    ) ||
-    //    (OpCodeSection_w == `SEC_REST && (OpCodeRest_w <= `LAST_LD_INS  || OpCodeRest_w == `LAST_LD_INS)))  
-    //     Accu_CE = 1;
-    // else 
-    //     Accu_CE = 0;
-
+    Carry_CE = (OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_SUB) ? 1 : 0;  //Every ADD-SUB instruction
 
 //DataMem_WE
-    if(OpCode_w == `OPCODE_ST_DM)
-        DataMem_WE = 1;
-    else
-        DataMem_WE = 0;
-
+    DataMem_WE = (OpCode_w == `OPCODE_ST_DM) ? 1 : 0;
 
 //Data: IMD / DM_Addr
     assign Data = Data_w;

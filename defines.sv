@@ -54,6 +54,5 @@
 `define SEC_IMD  2'd2
 `define SEC_REST 2'd3
 
-`define LAST_LD_INS 3'd2
 
 
