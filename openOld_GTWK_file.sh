@@ -32,6 +32,6 @@ echo "*** Opening old gtkw file without compiling ***"
 sed -i "5s/.*/$escLineVCD/" "$fullpath.gtkw"
 
 #echo sed -i "8s/.*/$escLineGTKW/" "$fullpath.gtkw"
-ed -i "8s/.*/$escLineGTKW/" "$fullpath.gtkw"
+sed -i "8s/.*/$escLineGTKW/" "$fullpath.gtkw"
 
 gtkwave "$fullpath.gtkw" --rcvar 'fontname_signals Monospace 17' --rcvar 'fontname_waves Monospace 12'

@@ -46,4 +46,19 @@ JMP_IMD  43  ; 44
 SUB_IMD  18  ; 45
 ST_R     R0  ; R0 = A = 60;
 JMP_R    R0  ; JMP R0 = 60
+NOP ;
+NOP ;
+NOP ;
+NOP ;
+NOP ;
+NOP ;
+NOP ;
+NOP ;
+NOP ;
+NOP ;
+NOP ;
+NOP ;
 JMP_IMD  0   ; 60
+NOP ;
+NOP ;
+NOP ;

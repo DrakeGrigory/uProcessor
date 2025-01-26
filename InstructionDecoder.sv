@@ -7,18 +7,18 @@ module InstructionDecoder(
 input [12:0] Ins,                   //Instruction from Program Memory
 
 
-output logic DataMem_WE,            //Write Enable for Data Mem
-output logic Reg_CE,                //shouldnt all CE be WE?
-output logic [3:0] RegAddr,
-output logic [7:0] Data,
-output logic [1:0] SelDataSource,   
+output logic DataMem_WE,            // Write Enable for Data Mem (//shouldnt all CE be WE?)
+output logic Reg_CE,                // Registers Write Enable Signal
+output logic [3:0] RegAddr,         // Decoded Register address
+output logic [7:0] Data,            // Data comming out of Instruction
+output logic [1:0] SelDataSource,   // Selector of Data Source that will go into the ALU
 
-output logic [2:0] ALUCode,
-output logic Carry_CE,  
+output logic [2:0] ALUCode,         // ALU Operation Code 
+output logic Carry_CE,              // Carry Write Enable
 
-output logic Accu_CE,
+output logic Accu_CE,               // Accumulator Write Enable
 
-output logic [6:0] ControlPC
+output logic [6:0] ControlPC        // Flag (1b) + Jump-to-Addrres (6b) :: Program Counter position manipulation
 );
 
 parameter InsWidth = `PM_ID_INS_WIDTH;
@@ -34,7 +34,7 @@ wire [5:0] PCAddrIn;        // Input address of Program Counter pointing to the 
 assign OpCode_w        = Ins[InsWidth-1 : InsWidth-5];         //5 first five MSB bits
 assign OpCodeSection_w = Ins[InsWidth-1 : InsWidth-2];         //2 first two MSB bits
 assign OpCodeRest_w    = Ins[InsWidth-3 : InsWidth-5];         //3 3-5 MSB bits
-assign RNum_w          = Ins[InsWidth-6 : InsWidth-7];         //2 6-7 MSB bit
+assign RNum_w          = Ins[1:0];         //2 1-2 LSB bit
 assign Data_w          = Ins[7:0];
 assign PCAddrIn        = Ins[5:0];
 
@@ -49,10 +49,10 @@ always @(*) begin
      default: RegAddr = 4'b0000;
     endcase 
 
-//Reg_CE
+//Reg_CE 
     Reg_CE = (OpCode_w == `OPCODE_ST_R) ? 1 : 0;
 
-//SelDataSource
+//SelDataSource 
     if(OpCodeSection_w!=`SEC_REST) begin
         SelDataSource = OpCodeSection_w;
     end else begin
@@ -62,12 +62,13 @@ always @(*) begin
             2: SelDataSource = `SEC_IMD;    // LD_IMD
             3: SelDataSource = `SEC_DM;      // ST_R
             4: SelDataSource = `SEC_R;     // ST_DM
-            default: SelDataSource = `SEC_R; //Random choice
+            default: SelDataSource = `SEC_R; //Arbitrary choice
         endcase
     end
      
 
-//ALUCode and Accu_CE
+
+//ALUCode and Accu_CE 
     if(OpCodeSection_w != `SEC_REST) begin   //First 3 instructions sections (0-7,8-15,16-23)
         if(OpCodeRest_w<=`ALU_XOR) begin
             ALUCode = OpCodeRest_w;
@@ -87,20 +88,18 @@ always @(*) begin
     end
 
 
-//Carry_CE
+//Carry_CE 
     Carry_CE = (OpCodeSection_w != `SEC_REST && OpCodeRest_w <= `ALU_SUB) ? 1 : 0;  //Every ADD-SUB instruction
 
-//DataMem_WE
-    DataMem_WE = (OpCode_w == `OPCODE_ST_DM) ? 1 : 0;
+//DataMem_WE 
+    DataMem_WE = (OpCode_w == `OPCODE_ST_DM) ? 1 : 0; //Only on Store
 
-//Data: IMD / DM_Addr
-    assign Data = Data_w;
-    
-
-//ControlPC
-    ControlPC = (OpCodeSection_w != `SEC_REST && OpCodeRest_w == `JMP) ? {1'b1, PCAddrIn} : {7'd0};
+//ControlPC 
+    ControlPC = (OpCodeSection_w != `SEC_REST && OpCodeRest_w == `JMP) ? {1'b1, PCAddrIn} : {7'd0}; //Sets jump flag and address on JMP instruction; otherwise sends zeroes
 
 end
 
+//Data: IMD / DM_Addr
+assign Data = Data_w;
 
 endmodule
