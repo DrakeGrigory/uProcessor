@@ -6,7 +6,7 @@
 
 module RegisterFile_tb;
 
-logic [7:0] A_tb;
+logic [7:0] Accu_tb;
 logic clk_tb;
 logic nReset_tb;
 logic [7:0] out_tb;
@@ -17,7 +17,7 @@ logic CE;
 
 
 RegfisterFile RegfisterFile_1(
-.A(A_tb),
+.A(Accu_tb),
 .clk(clk_tb),
 .RegCE(CE),
 .RegNum(RegNum_tb),
@@ -43,11 +43,11 @@ end
 
 
 initial begin // 
-    CE = 1'b1; RegNum_tb = 4'b0000; A_tb = 8'd0;
-    #10 RegNum_tb = 4'b0001; A_tb = 8'd4;
-    #10 RegNum_tb = 4'b0010; A_tb = 8'd5;
-    #10 RegNum_tb = 4'b0100; A_tb = 8'd6;
-    #10 RegNum_tb = 4'b1000; A_tb = 8'd7;
+    CE = 1'b1; RegNum_tb = 4'b0000; Accu_tb = 8'd0;
+    #10 RegNum_tb = 4'b0001; Accu_tb = 8'd4;
+    #10 RegNum_tb = 4'b0010; Accu_tb = 8'd5;
+    #10 RegNum_tb = 4'b0100; Accu_tb = 8'd6;
+    #10 RegNum_tb = 4'b1000; Accu_tb = 8'd7;
     #10 RegNum_tb = 4'b0000;
 end
 

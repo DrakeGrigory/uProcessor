@@ -1,12 +1,12 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Jan 26 21:11:21 2025
+[*] Sun Jan 26 21:27:16 2025
 [*]
 [dumpfile] "C:\Users\KG-6\Desktop\AFTER_261224\MSC\KGuP\tb_files\top_tb.vcd"
-[dumpfile_mtime] "Sun Jan 26 21:04:11 2025"
-[dumpfile_size] 36825
+[dumpfile_mtime] "Sun Jan 26 21:21:53 2025"
+[dumpfile_size] 36665
 [savefile] "C:\Users\KG-6\Desktop\AFTER_261224\MSC\KGuP\tb_files\top_tb.gtkw"
-[timestart] 702200
+[timestart] 0
 [size] 1540 845
 [pos] -1 -1
 *-15.600000 94950 175000 275000 375000 425000 485000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
