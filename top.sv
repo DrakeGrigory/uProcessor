@@ -10,6 +10,7 @@
 `include "SmallModules.sv"
 `include "DataMemory.sv"
 
+`include "DebugModule.sv"
 module top(input clk, input nReset);
 
 //============================================================================
@@ -52,7 +53,7 @@ wire ALU_Co;
 //Carry output
 wire RegCarry_2_ALU;
 
-//A output
+//Accu output
 wire [7:0] Accu_out;
 
 //============================================================================
@@ -138,7 +139,7 @@ DffPIPO_CE_SET #(.SIZE(1)) RegCY(
 .Q(RegCarry_2_ALU) //output
 );
 
-//ACUMULATOR
+//ACCUMULATOR
 DffPIPO_CE_SET A(
 .CE(ID_Accu_CE), //inputs
 .D(ALU_2_Accu),
@@ -146,6 +147,13 @@ DffPIPO_CE_SET A(
 .nReset(nReset),
 .Q(Accu_out) //output
 );
+
+// ---------------------------- DEBUG Part -----------------------------------
+DebugModule #(.INS_ADDR_WIDTH(6), .MEM_WIDTH(8), .MEM_LEN(64)) DebMod_CheckAccuVal (
+.addr(PC_Addr),
+.accuValue(Accu_out)
+);
+
 
 
 endmodule

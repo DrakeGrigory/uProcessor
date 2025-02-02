@@ -6,7 +6,6 @@
 module InstructionDecoder(
 input [12:0] Ins,                   //Instruction from Program Memory
 
-
 output logic DataMem_WE,            // Write Enable for Data Mem (//shouldnt all CE be WE?)
 output logic Reg_CE,                // Registers Write Enable Signal
 output logic [3:0] RegAddr,         // Decoded Register address
