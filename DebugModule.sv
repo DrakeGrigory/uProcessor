@@ -42,7 +42,7 @@ module DebugModule #(parameter INS_ADDR_WIDTH, parameter MEM_WIDTH, parameter ME
     end
 
     assign correctValueAccu = Mem[delayQaddr];
-    assign isAccuValueCorrect = (delayQaddr == accuValue);
+    assign isAccuValueCorrect = (correctValueAccu == accuValue) ? 1'b1 : 1'b0;
 
 endmodule
 
