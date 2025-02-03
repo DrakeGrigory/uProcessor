@@ -1,12 +1,9 @@
 clc; close all; clear;
 %Quick version of custom ASSEMBLER; Its bad, need to be refactored, but it works
 
-%filenameReadIns = "Instructions.asm";
-filenameReadIns = "Instructions_ValueCheck.asm";
+filenameReadIns = "Instructions.asm";
 filenameReadDefines = "InstructionDefines.csv" ;
 filenameWrite = "InsBin.asm";
-correctAccumulatorValueFile = "accuCheckValues.hex";
-
 binSize=[5,8]; %[opcode, arg]
 
 %Creating Define Rules from the CSV
@@ -16,7 +13,7 @@ opcodeDefines = getDefinesFromCSV(filenameReadDefines);
 numOfLines = getNumOfLines(filenameReadIns);               
 
 %Getting Instructions seprated for Opcodes and Arguments as strings
-[opcodes, args] = getInstructionsToOpcodesAndArgs(filenameReadIns,numOfLines,correctAccumulatorValueFile);
+[opcodes, args] = getInstructionsToOpcodesAndArgs(filenameReadIns,numOfLines);
 
 flag_empty_args=1;
 for i=1:numOfLines
@@ -28,8 +25,6 @@ if(flag_empty_args)
     fprintf(2,"\nERROR --- NO ARGS \n")
     return
 end
-
-
 
 %Getting Values out of Opcodes and Arguments as doubles and binaries
 [opcodesValDec,argsValDec,opcodesValBin,argsValBin] = getInstructionValues(opcodes, args, opcodeDefines, numOfLines, binSize);
@@ -143,17 +138,16 @@ end
 
 
 
-function[opcodes, args] = getInstructionsToOpcodesAndArgs(filename,numOfLines,correctAccumulatorValueFile)
+function[opcodes, args] = getInstructionsToOpcodesAndArgs(filename,numOfLines)
     
     sepSpace = ' ';
     sepSemicolon = ';';
     regChar = 'R';
-    
 
     %predefine sizes of matrixes
     opcodes = strings(numOfLines,1);
     args = strings(numOfLines,1);
-    correctAccuValues = strings(numOfLines,1);
+    corre
 
     %open file and check for fail
     fileRead = fopen(filename,"r");
@@ -197,44 +191,9 @@ function[opcodes, args] = getInstructionsToOpcodesAndArgs(filename,numOfLines,co
 
 
       %CORRECT ACCUMULATOR VALUES
-        correctAccuValue = "";
-        i=i+1; %skip first semicolon
-        while(fileLine(i)~=sepSemicolon)    
-            
-            if(fileLine(i)=="S")
-               correctAccuValue="0";
-               break;
-            end
 
-            if(fileLine(i)~=sepSpace)
-                correctAccuValue=correctAccuValue+fileLine(i);
-            end
-
-            if(i~=length(fileLine)) 
-                i=i+1;
-            else
-                break
-            end
-        end
-        correctAccuValues(j) = correctAccuValue;
     end
-
-
-    CAVFile = fopen(correctAccumulatorValueFile,"w");
-    if(CAVFile==0)
-            fprintf("Fopen Err");
-            return; 
-    end
-
-    %fprintf(FID, '%50s \n', STR);
-
-    CAVDoubleChar=dec2hex(str2double(correctAccuValues));
-    CAVString = strings(numOfLines,1);
-    CAVString = CAVString + CAVDoubleChar(:,1) +  CAVDoubleChar(:,2);
-    fprintf(CAVFile,"%s\n",CAVString);
-    fclose(CAVFile);
-
-
+    
     fclose(fileRead);
 end
 

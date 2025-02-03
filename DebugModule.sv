@@ -6,12 +6,14 @@
 module DebugModule #(parameter INS_ADDR_WIDTH, parameter MEM_WIDTH, parameter MEM_LEN)(
     input [INS_ADDR_WIDTH-1:0] addr,
     input [MEM_WIDTH-1:0] accuValue,
-
-    output logic isAccuValueCorrect,
-    output logic     
+    input clk,
+    output logic isAccuValueCorrect,  
     output logic [MEM_WIDTH-1:0] correctValueAccu
  );
     
+    reg [5:0] delayQaddr; 
+    reg [5:0] delayDaddr;
+   
     localparam accuValueCheckFilePath = "Assembler/accuCheckValues.hex";
     integer i=0;
     reg [MEM_WIDTH-1:0] Mem  [MEM_LEN-1:0];
@@ -25,8 +27,22 @@ module DebugModule #(parameter INS_ADDR_WIDTH, parameter MEM_WIDTH, parameter ME
 
         //loading correctValueAccu
         $readmemh(accuValueCheckFilePath, Mem,0, MEM_LEN-1);
+
     end
-    assign correctValueAccu = Mem[addr];
-    assign isAccuValueCorrect = (Mem[addr] == accuValue);
+    
+
+    //delay output of correct value by cycle but with usage of a too slow clock
+    //that is why negedge is added. Two edges per one cycle is needed
+    //Otherwise PC does not meet hold requirements, then delayQaddr grabs every second one addr.
+    always_ff @(negedge clk) begin
+        delayDaddr = addr;
+    end
+    always_ff @(posedge clk) begin
+        delayQaddr = delayDaddr;
+    end
+
+    assign correctValueAccu = Mem[delayQaddr];
+    assign isAccuValueCorrect = (delayQaddr == accuValue);
+
 endmodule
 

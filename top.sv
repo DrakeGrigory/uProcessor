@@ -151,7 +151,8 @@ DffPIPO_CE_SET A(
 // ---------------------------- DEBUG Part -----------------------------------
 DebugModule #(.INS_ADDR_WIDTH(6), .MEM_WIDTH(8), .MEM_LEN(64)) DebMod_CheckAccuVal (
 .addr(PC_Addr),
-.accuValue(Accu_out)
+.accuValue(Accu_out),
+.clk(clk)
 );
 
 
