@@ -100,6 +100,7 @@ RegfisterFile RF(
 .A(Accu_out),
 .nReset(nReset),
 .clk(clk),
+.inR3(inR3),
 .out(RegFile_2_Mult) //output
 );
 

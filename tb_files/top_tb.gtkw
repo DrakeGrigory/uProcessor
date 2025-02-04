@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Tue Feb 04 13:56:50 2025
+[*] Tue Feb 04 18:18:08 2025
 [*]
 [dumpfile] "C:\Users\KG-6\Desktop\AFTER_261224\MSC\KGuP\tb_files\top_tb.vcd"
-[dumpfile_mtime] "Tue Feb 04 13:56:15 2025"
-[dumpfile_size] 44201
+[dumpfile_mtime] "Tue Feb 04 18:16:51 2025"
+[dumpfile_size] 44532
 [savefile] "C:\Users\KG-6\Desktop\AFTER_261224\MSC\KGuP\tb_files\top_tb.gtkw"
-[timestart] 0
-[size] 1536 801
-[pos] -1 -1
-*-15.600000 532300 175000 275000 375000 425000 545000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 345500
+[size] 1920 1017
+[pos] 1911 -9
+*-15.600000 317900 175000 275000 375000 425000 545000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.top1.
 [treeopen] top_tb.top1.RegCY.
@@ -17,7 +17,7 @@
 [sst_width] 197
 [signals_width] 282
 [sst_expanded] 1
-[sst_vpaned_height] 305
+[sst_vpaned_height] 408
 @24
 top_tb.top1.PC.AddrOut[5:0]
 @28
@@ -36,10 +36,9 @@ top_tb.top1.ID_RegAddr[3:0]
 top_tb.top1.RF.RegNum[3:0]
 [color] 2
 top_tb.top1.RF.RegCE
-@25
+@24
 [color] 7
 top_tb.top1.RF.R0.Q[7:0]
-@24
 [color] 7
 top_tb.top1.RF.R1.Q[7:0]
 @c00024
@@ -64,7 +63,7 @@ top_tb.top1.RF.R2.Q[7:0]
 (7)top_tb.top1.RF.R2.Q[7:0]
 @1401200
 -group_end
-@22
+@25
 top_tb.top1.RF.inR3[7:0]
 @28
 [color] 7
