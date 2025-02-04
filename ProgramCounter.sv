@@ -9,11 +9,11 @@
 `include "defines.sv"
 
 module ProgramCounter(
-input WriteEnable,
-input clk,
+input WriteEnable,          //Write enable - disables/enables overwriting counter - allows/disables jumps 
+input clk,                  
 input nReset,
-input  logic [5:0] AddrIn,
-output logic [5:0] AddrOut
+input  logic [5:0] AddrIn,  // Address to which PC will jump, if WE is enabled
+output logic [5:0] AddrOut  // Outputs current value of PC's counter
 );
 
 

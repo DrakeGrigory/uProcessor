@@ -5,8 +5,8 @@
 */
 
 module ProgramMemory (
-    input [5:0] addr,
-    output reg [12:0] InsOut
+    input [5:0] addr,           //Address of instruction
+    output reg [12:0] InsOut    //Outputed instruction
 );
 
 localparam insFilePath = "Assembler/InsBin.asm";

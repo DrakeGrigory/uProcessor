@@ -1,5 +1,5 @@
 $date
-	Tue Feb 04 19:16:51 2025
+	Tue Feb 04 19:38:50 2025
 $end
 $version
 	Icarus Verilog
@@ -121,7 +121,7 @@ $var parameter 160 m insFilePath $end
 $var integer 32 n i [31:0] $end
 $upscope $end
 $scope module RF $end
-$var wire 8 o A [7:0] $end
+$var wire 8 o Accu [7:0] $end
 $var wire 1 : RegCE $end
 $var wire 4 p RegNum [3:0] $end
 $var wire 1 # clk $end

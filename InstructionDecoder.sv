@@ -17,7 +17,7 @@ output logic Carry_CE,              // Carry Write Enable
 
 output logic Accu_CE,               // Accumulator Write Enable
 
-output logic [6:0] ControlPC        // Flag (1b) + Jump-to-Addrres (6b) :: Program Counter position manipulation
+output logic [6:0] ControlPC        // Flag (MSB) + Jump-to-Addrres (6b) :: Program Counter position manipulation
 );
 
 parameter InsWidth = `PM_ID_INS_WIDTH;

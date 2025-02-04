@@ -97,7 +97,7 @@ InstructionDecoder ID(
 RegfisterFile RF(
 .RegCE(ID_RegCE),  //inputs
 .RegNum(ID_RegAddr),
-.A(Accu_out),
+.Accu(Accu_out),
 .nReset(nReset),
 .clk(clk),
 .inR3(inR3),

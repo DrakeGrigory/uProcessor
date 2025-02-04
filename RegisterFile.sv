@@ -8,19 +8,19 @@
 `include "DffPIPO_CE_SET.sv"
 
 module RegfisterFile(
-    input [7:0] A,
-    input clk,
+    input [7:0] Accu,   // inputs Accumulator output
+    input clk,          
     input nReset,
-    input [3:0] RegNum, //decoder will be placed in ID
-    input RegCE,
-    input [7:0] inR3,
+    input [3:0] RegNum, // decoder will be placed in ID
+    input RegCE,        // Clock Enable/Write Enable that allows for writing into registers
+    input [7:0] inR3,   // input that allows to insert an user-defined value
 
     output logic [7:0] out);
 
 wire [7:0] Reg2Mult [0:3];
 
 DffPIPO_CE_SET R0(
-.D(A),
+.D(Accu),
 .CE(RegNum[0] & RegCE),
 .clk(clk),
 .nReset(nReset),
@@ -28,7 +28,7 @@ DffPIPO_CE_SET R0(
 );
 
 DffPIPO_CE_SET #(.SET(1)) R1(
-.D(A),
+.D(Accu),
 .CE(RegNum[1] & RegCE),
 .clk(clk),
 .nReset(nReset),
@@ -36,7 +36,7 @@ DffPIPO_CE_SET #(.SET(1)) R1(
 );
 
 DffPIPO_CE_SET #(.SET(2)) R2(
-.D(A),
+.D(Accu),
 .CE(RegNum[2] & RegCE),
 .clk(clk),
 .nReset(nReset),
@@ -46,7 +46,7 @@ DffPIPO_CE_SET #(.SET(2)) R2(
 assign Reg2Mult[3] = inR3; //it can be done differently, this one is the fastest to ipmlement
 
 // DffPIPO_CE_SET #(.SET(4)) R3(
-// .D(A),
+// .D(Accu),
 // .CE(RegNum[3] & RegCE),
 // .clk(clk),
 // .nReset(nReset),

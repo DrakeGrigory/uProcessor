@@ -5,12 +5,12 @@
 */
 
 module DffPIPO_CE_SET #(parameter SET = 0, parameter SIZE = 8)(
-    input CE,
-    input [SIZE-1:0] D,
-    input clk,
+    input CE,               // Clock Enable - Enables/Disables writing into register of this memory (Q)
+    input [SIZE-1:0] D,     // Value that will be written into memory
+    input clk,      
     input nReset,
 
-    output reg [SIZE-1:0] Q
+    output reg [SIZE-1:0] Q // Memory/Output of this memory
 );
 
 always @(posedge clk ) begin

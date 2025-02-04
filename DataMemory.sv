@@ -5,12 +5,12 @@
 
 
 module DataMemory  #(parameter DATA_WIDTH = 8, parameter DATA_LEN = 256)(
-    input [DATA_WIDTH-1:0] Accu,
-    input WriteEnable,
-    input [DATA_WIDTH-1:0] Addr,
+    input [DATA_WIDTH-1:0] Accu,            // Inputs Accumulator's output
+    input WriteEnable,                      // Enables/Disables writing into memory
+    input [DATA_WIDTH-1:0] Addr,            // Address on which basis proper memory cell is chosen
     input nReset,
     input clk,
-    output reg [DATA_WIDTH-1:0] DataOut
+    output reg [DATA_WIDTH-1:0] DataOut     // Outputs data of DM cell of "Addr" number 
 );
 
 reg [DATA_WIDTH-1:0] DataMem [DATA_LEN-1:0];

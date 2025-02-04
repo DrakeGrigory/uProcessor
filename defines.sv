@@ -1,4 +1,4 @@
-//ALU CODES
+//ALU CODES: Used in ID and ALU 
 `define ALU_ADD  3'd0
 `define ALU_SUB  3'd1
 `define ALU_AND  3'd2
@@ -9,7 +9,7 @@
 `define ALU_DEF  3'd7
 
 
-//INSTRUCTION
+//INSTRUCTION: Used in ID and old PM
 //SECTION: REGISTERS
 `define OPCODE_ADD_R {2'b00, 3'd0} //to Accu Add value of Rx
 `define OPCODE_SUB_R {2'b00, 3'd1} //to Accu Sub value of Rx
@@ -44,7 +44,7 @@
 
 `define OPCODE_NOP    5'd31  //3'd7 //No operation is executed
 
-//INSTRUCTION DECODER
+//INSTRUCTION DECODER: Used in ID
 `define PM_ID_INS_WIDTH 13;
 
 `define SEC_R    2'd0
