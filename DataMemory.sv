@@ -10,7 +10,7 @@ module DataMemory  #(parameter DATA_WIDTH = 8, parameter DATA_LEN = 256)(
     input [DATA_WIDTH-1:0] Addr,            // Address on which basis proper memory cell is chosen
     input nReset,
     input clk,
-    output reg [DATA_WIDTH-1:0] DataOut     // Outputs data of DM cell of "Addr" number 
+    output logic [DATA_WIDTH-1:0] DataOut     // Outputs data of DM cell of "Addr" number
 );
 
 reg [DATA_WIDTH-1:0] DataMem [DATA_LEN-1:0];
@@ -21,7 +21,7 @@ begin
     if(nReset==0) begin             //RESET
 
         for(i=0; i<DATA_LEN; i=i+1) begin
-            DataMem[i] = i;
+            DataMem[i] = DATA_LEN-1-i;
         end
 
     end else begin                  //Normal Operations
@@ -39,11 +39,5 @@ begin
     end
 end
 
-always @(*) begin //I wonder what synthesis will discover.
-                
-    if(WriteEnable==1)
-        DataOut = 8'b0;
-    else
-        DataOut = DataMem[Addr];
-end
+assign DataOut = DataMem[Addr];
 endmodule

@@ -16,15 +16,15 @@ LD_R     R2  ; 2   ;
 XOR_R    R1  ; 3   ; 0010 ^ 0001 = 0011 3
 NOP          ; 3   ;
 NOP          ; 3   ;                                                            
-ADD_DM   22  ; 25  ; A=3; A+=22 = 25
-SUB_DM   18  ; 7   ; A=7
-AND_DM   14  ; 6   ; A=0111 $ 1110 = 0110 = 6
-OR_DM    8   ; 14  ; A=1110 = 14 
-ST_DM    253 ; 14  ; DM[253] = 14        //manual check
-LD_DM    15  ; 15  ; A = DM[15] = 15
-XOR_DM   190 ; 177 ; 0000_1111 ^ 1011_1110 = 1011_0001 = 177
+ADD_DM   233 ; 25  ; A=3; A+=22 = 25
+SUB_DM   237 ; 7   ; A=7
+AND_DM   241 ; 6   ; A=0111 $ 1110 = 0110 = 6
+OR_DM    247 ; 14  ; A=1110 = 14 
+ST_DM    2   ; 14  ; DM[253] = 14        //manual check
+LD_DM    240 ; 15  ; A = DM[15] = 15
+XOR_DM   65  ; 177 ; 0000_1111 ^ 1011_1110 = 1011_0001 = 177
 NOT          ; 78  ; ~177 = 78       
-LD_DM    253 ; 14  ; A=14
+LD_DM    2   ; 14  ; A=14
 NOP          ; 14  ;   
 NOP          ; 14  ;  
 LD_IMD   5   ; 5   ; A=5
@@ -41,7 +41,7 @@ NOP          ; 78  ;
 NOP          ; 78  ; 
 NOP          ; 78  ;  //(keep in mind that lines in text editor starts with index 1)
 JMP_IMD  44  ; 78  ;  JMP to PC=44 -> JMP_IMD  43       // MANUAL CHECK
-JMP_DM   45  ; 78  ;  JMP to PC=45 -> LD_R     R3       // MANUAL CHECK
+JMP_DM   237 ; 78  ;  JMP to PC=45 -> LD_R     R3       // MANUAL CHECK
 JMP_IMD  43  ; 78  ;  JMP to PC=43 -> JMP_DM   45       // MANUAL CHECK                    
 LD_R     R3  ; 85  ;  //testing TB input
 AND_R    R3  ; 80  ;  //testing TB input    
