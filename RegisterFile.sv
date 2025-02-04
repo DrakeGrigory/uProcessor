@@ -1,6 +1,6 @@
 /* WHAT IS THIS? 
 // This module is a Register File
-// It contain 4x8bit Registers (Dff) 
+// It contain 4x8bit Registers (Dff) or 3x8bit  
 // Output is a multiplexed register output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 */
 
@@ -13,6 +13,7 @@ module RegfisterFile(
     input nReset,
     input [3:0] RegNum, //decoder will be placed in ID
     input RegCE,
+    input [7:0] inR3,
 
     output logic [7:0] out);
 
@@ -42,13 +43,15 @@ DffPIPO_CE_SET #(.SET(2)) R2(
 .Q(Reg2Mult[2])
 );
 
-DffPIPO_CE_SET #(.SET(4)) R3(
-.D(A),
-.CE(RegNum[3] & RegCE),
-.clk(clk),
-.nReset(nReset),
-.Q(Reg2Mult[3])
-);
+assign Reg2Mult[3] = inR3; //it can be done differently, this one is the fastest to ipmlement
+
+// DffPIPO_CE_SET #(.SET(4)) R3(
+// .D(A),
+// .CE(RegNum[3] & RegCE),
+// .clk(clk),
+// .nReset(nReset),
+// .Q(Reg2Mult[3])
+// );
 
 
 always @(*) begin

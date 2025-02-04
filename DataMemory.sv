@@ -1,20 +1,26 @@
-module DataMemory  #(parameter DataWidth = 8, parameter DataLen = 256)(
-    input [DataWidth-1:0] Accu,
+/* WHAT IS THIS? 
+// This module is an Data Memory
+// It stores DATA_LEN of Registers of DATA_WIDTH width that hold values just like Accumulator.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+*/
+
+
+module DataMemory  #(parameter DATA_WIDTH = 8, parameter DATA_LEN = 256)(
+    input [DATA_WIDTH-1:0] Accu,
     input WriteEnable,
-    input [DataWidth-1:0] Addr,
+    input [DATA_WIDTH-1:0] Addr,
     input nReset,
     input clk,
-    output reg [DataWidth-1:0] DataOut
+    output reg [DATA_WIDTH-1:0] DataOut
 );
 
-reg [DataWidth-1:0] DataMem [DataLen-1:0];
+reg [DATA_WIDTH-1:0] DataMem [DATA_LEN-1:0];
 
 integer i=0;
 always @(clk) 
 begin
     if(nReset==0) begin             //RESET
 
-        for(i=0; i<DataLen; i=i+1) begin
+        for(i=0; i<DATA_LEN; i=i+1) begin
             DataMem[i] = i;
         end
 

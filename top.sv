@@ -11,7 +11,10 @@
 `include "DataMemory.sv"
 
 `include "DebugModule.sv"
-module top(input clk, input nReset);
+module top(input clk, input nReset,
+input  [7:0] inR3,          //user-defined input to one of regs 
+output [5:0] PC_Addr_o,     //debug
+output [7:0] Accu_out_o);   //debug
 
 //============================================================================
 //----------------------------------- WIRES ----------------------------------
@@ -123,11 +126,11 @@ Multiplexer4to1 Mult4to1(
 //ALU
 ALU ALU_1(
 .ALUCode(ID_ALUCode), //inputs
-.MemIn(Mult_2_ALU),
-.Accu(Accu_out),
+.DataIn(Mult_2_ALU),
+.AccuIn(Accu_out),
 .Ci(RegCarry_2_ALU), 
 .Co(ALU_Co), //outputs
-.Out(ALU_2_Accu)
+.DataOut(ALU_2_Accu)
 );
 
 //CARRY
@@ -148,13 +151,7 @@ DffPIPO_CE_SET A(
 .Q(Accu_out) //output
 );
 
-// ---------------------------- DEBUG Part -----------------------------------
-DebugModule #(.INS_ADDR_WIDTH(6), .MEM_WIDTH(8), .MEM_LEN(64)) DebMod_CheckAccuVal (
-.addr(PC_Addr),
-.accuValue(Accu_out),
-.clk(clk)
-);
 
-
-
+assign PC_Addr_o = PC_Addr;
+assign Accu_out_o = Accu_out;
 endmodule

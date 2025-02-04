@@ -1,24 +1,23 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Feb 03 22:07:56 2025
+[*] Tue Feb 04 13:56:50 2025
 [*]
 [dumpfile] "C:\Users\KG-6\Desktop\AFTER_261224\MSC\KGuP\tb_files\top_tb.vcd"
-[dumpfile_mtime] "Mon Feb 03 22:07:40 2025"
-[dumpfile_size] 41673
+[dumpfile_mtime] "Tue Feb 04 13:56:15 2025"
+[dumpfile_size] 44201
 [savefile] "C:\Users\KG-6\Desktop\AFTER_261224\MSC\KGuP\tb_files\top_tb.gtkw"
 [timestart] 0
-[size] 1920 1017
-[pos] 1911 -9
-*-15.600000 469800 175000 275000 375000 425000 485000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1536 801
+[pos] -1 -1
+*-15.600000 532300 175000 275000 375000 425000 545000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.top1.
-[treeopen] top_tb.top1.DebMod_CheckAccuVal.
 [treeopen] top_tb.top1.RegCY.
 [treeopen] top_tb.top1.RF.
-[sst_width] 239
-[signals_width] 324
+[sst_width] 197
+[signals_width] 282
 [sst_expanded] 1
-[sst_vpaned_height] 408
+[sst_vpaned_height] 305
 @24
 top_tb.top1.PC.AddrOut[5:0]
 @28
@@ -37,9 +36,10 @@ top_tb.top1.ID_RegAddr[3:0]
 top_tb.top1.RF.RegNum[3:0]
 [color] 2
 top_tb.top1.RF.RegCE
-@24
+@25
 [color] 7
 top_tb.top1.RF.R0.Q[7:0]
+@24
 [color] 7
 top_tb.top1.RF.R1.Q[7:0]
 @c00024
@@ -64,10 +64,10 @@ top_tb.top1.RF.R2.Q[7:0]
 (7)top_tb.top1.RF.R2.Q[7:0]
 @1401200
 -group_end
-@24
-[color] 7
-top_tb.top1.RF.R3.Q[7:0]
+@22
+top_tb.top1.RF.inR3[7:0]
 @28
+[color] 7
 top_tb.top1.ID_DataMem_WE
 @24
 [color] 1
@@ -81,9 +81,11 @@ top_tb.top1.ID_Accu_CE
 top_tb.top1.ALU_2_Accu[7:0]
 [color] 2
 top_tb.top1.Accu_out[7:0]
-top_tb.top1.DebMod_CheckAccuVal.correctValueAccu[7:0]
+[color] 2
+top_tb.DebMod_CheckAccuVal.correctValueAccu[7:0]
 @28
-top_tb.top1.DebMod_CheckAccuVal.isAccuValueCorrect
+[color] 2
+top_tb.DebMod_CheckAccuVal.isAccuValueCorrect
 @22
 [color] 7
 top_tb.top1.DataMem_2_Mult[7:0]
