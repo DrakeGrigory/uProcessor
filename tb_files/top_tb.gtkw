@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Tue Feb 04 19:06:12 2025
+[*] Wed Feb 05 15:55:47 2025
 [*]
 [dumpfile] "C:\Users\KG-6\Desktop\AFTER_261224\MSC\KGuP\tb_files\top_tb.vcd"
-[dumpfile_mtime] "Tue Feb 04 19:04:57 2025"
-[dumpfile_size] 47104
+[dumpfile_mtime] "Wed Feb 05 15:53:09 2025"
+[dumpfile_size] 45330
 [savefile] "C:\Users\KG-6\Desktop\AFTER_261224\MSC\KGuP\tb_files\top_tb.gtkw"
-[timestart] 345500
+[timestart] 0
 [size] 1920 1017
 [pos] 1911 -9
-*-15.600000 450700 175000 275000 375000 425000 545000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.600000 595000 175000 275000 375000 425000 595000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top_tb.
 [treeopen] top_tb.top1.
 [treeopen] top_tb.top1.RegCY.
@@ -88,7 +88,5 @@ top_tb.DebMod_CheckAccuVal.isAccuValueCorrect
 @24
 [color] 7
 top_tb.top1.DataMem_2_Mult[7:0]
-@25
-top_tb.top1.DM.DataOut[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

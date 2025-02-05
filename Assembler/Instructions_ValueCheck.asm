@@ -41,7 +41,7 @@ NOP          ; 78  ;
 NOP          ; 78  ; 
 NOP          ; 78  ;  //(keep in mind that lines in text editor starts with index 1)
 JMP_IMD  44  ; 78  ;  JMP to PC=44 -> JMP_IMD  43       // MANUAL CHECK
-JMP_DM   237 ; 78  ;  JMP to PC=45 -> LD_R     R3       // MANUAL CHECK
+JMP_IMD  45  ; 78  ;  JMP to PC=45 -> LD_R     R3       // MANUAL CHECK
 JMP_IMD  43  ; 78  ;  JMP to PC=43 -> JMP_DM   45       // MANUAL CHECK                    
 LD_R     R3  ; 85  ;  //testing TB input
 AND_R    R3  ; 80  ;  //testing TB input    
@@ -60,5 +60,5 @@ NOP          ; SGH ;  //Shouldn't get here
 NOP          ; SGH ;  //Shouldn't get here
 NOP          ; SGH ;  //Shouldn't get here       
 NOP          ; SGH ;  //Shouldn't get here
-JMP_R    R0  ; 0   ;
+JMP_IMD      ; 0   ;
 NOP          ; SGH ;  //Shouldn't get here

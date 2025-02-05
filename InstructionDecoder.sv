@@ -94,8 +94,14 @@ always @(*) begin
     DataMem_WE = (OpCode_w == `OPCODE_ST_DM) ? 1 : 0; //Only on Store
 
 //ControlPC 
-    ControlPC = (OpCodeSection_w != `SEC_REST && OpCodeRest_w == `JMP) ? {1'b1, PCAddrIn} : {7'd0}; //Sets jump flag and address on JMP instruction; otherwise sends zeroes
-
+    //ControlPC = (OpCodeSection_w != `SEC_REST && OpCodeRest_w == `JMP) ? {1'b1, PCAddrIn} : {7'd0}; //Sets jump flag and address on JMP instruction; otherwise sends zeroes
+    //But the feedback for Registers and DM was forgoten. Now, only the JMP_IMD can work at this moment.
+    //Also, protection for max PC address should be added.
+    
+if(PCAddrIn<=6'd63)
+    ControlPC = (OpCode_w == `OPCODE_JMP_IMD) ? {1'b1, PCAddrIn} : {7'd0}; //Sets jump flag and address on JMP instruction; otherwise sends zeroes
+else
+    ControlPC = (OpCode_w == `OPCODE_JMP_IMD) ? {1'b1, 6'd0} : {7'd0};
 end
 
 //Data: IMD / DM_Addr
