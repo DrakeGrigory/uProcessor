@@ -2,3 +2,6 @@ tb_new.sh
 Diagram/
 OLD/
 sim_files/
+!sim_files/top_tb
+!sim_files/top_tb.gtkw
+!sim_files/top_tb.vcd

@@ -10,6 +10,8 @@
 
 
 //INSTRUCTION: Used in ID and old PM
+// I leave them here, because they describe well how the ID works. Currently only OPCODE_JMP_IMD and OPCODE_ST_* are used.
+
 //SECTION: REGISTERS
 `define OPCODE_ADD_R {2'b00, 3'd0} //to Accu Add value of Rx
 `define OPCODE_SUB_R {2'b00, 3'd1} //to Accu Sub value of Rx
@@ -43,6 +45,10 @@
 `define OPCODE_NOT    5'd29  //3'd5 //Negates value of Accu 
 
 `define OPCODE_NOP    5'd31  //3'd7 //No operation is executed
+
+
+
+
 
 //INSTRUCTION DECODER: Used in ID
 `define PM_ID_INS_WIDTH 13;
