@@ -6,6 +6,12 @@ w folderze Pictures:
 > Znajduje się przebie symulacji obecnej wersji programu (09.02.25) na dwóch zdjęciach.
 > Znajduję się diagram przedstawiający budowę i połączenia procesora.
 
+zrzuty ekranu symulacji:
+> Obszar do pierwszego markera A oddziela okres testowania instrukcji sekcji rejestru.
+> Obszar między markerami A i B to okres testowania instrukcji sekcji Data Memory.
+> Obszar między markerami B i C to okres testowania instrukcji sekcji Immediate.
+> Obszar między markerami C i D to okres testowania instrukcji NOP.
+> Obszar między markerami D i E to okres testowania instrukcji JMP_IMD, ST_* oraz przygotowuje procesor do stanu początkowego za pomocą instrukcji.
 
 w folderze sim_files:
 > Znajdują się tam pliki symulacyjne.
