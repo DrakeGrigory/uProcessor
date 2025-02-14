@@ -1,4 +1,4 @@
-`define tb_path "tb_files/RegisterFile_tb.vcd"
+`define tb_path "sim_files/RegisterFile_tb.vcd"
 
 `timescale  1ns/1ps
 

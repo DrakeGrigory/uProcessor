@@ -1,7 +1,7 @@
 /* WHAT IS THIS? 
  This is a Testbench that tests Program Counter
 */
-`define tb_path "tb_files/PC_tb.vcd"
+`define tb_path "sim_files/PC_tb.vcd"
 `timescale 1ns/1ps
 
 `include "ProgramCounter.sv"

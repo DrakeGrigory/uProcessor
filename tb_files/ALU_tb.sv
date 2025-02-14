@@ -1,4 +1,4 @@
-`define tb_path "tb_files/ALU_tb.vcd"
+`define tb_path "sim_files/ALU_tb.vcd"
 
 `timescale  1ns/1ps
 

@@ -1,5 +1,5 @@
 #! /bin/bash
-foldername="tb_files"
+foldername="sim_files"
 
 filename="top_tb"
 #filename="ALU_tb"

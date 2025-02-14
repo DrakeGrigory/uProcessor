@@ -2,7 +2,7 @@
  This is a Testbench that tests all modules
 */
 
-`define tb_path "tb_files/top_tb.vcd"
+`define tb_path "sim_files/top_tb.vcd"
 
 `timescale  1ns/1ps
 
