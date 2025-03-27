@@ -53,6 +53,8 @@
 ### In the diagram folder:
 + Processor diagram files are located.
 
+### In the tb_unit folder: 
++ There are old test files that unit tested the processor modules at the very beginning of its creation.
 
 # Polish Version
 
@@ -102,6 +104,9 @@
 + openOld_GTWK_file.sh &nbsp; Zmienia ścieżki w pliku GTKW, aby wskazywały na odpowiednią lokalizację zapisu oraz pliku symulacji .vcd.
 + tb.sh &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Uruchamia kompilacje i symulacje.
 + tb_new.sh   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Uruchamia kompilacje i symulacje dla nowego pliku gtkw.
+
+### W folderze tb_unit: 
++ Znajdują się tam stare pliki testowe, które jednostkowo testowały moduły procesora na samym początku jego tworzenia.
 
 
 ### W folderze diagram:
